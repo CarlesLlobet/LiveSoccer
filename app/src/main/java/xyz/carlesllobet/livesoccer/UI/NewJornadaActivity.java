@@ -394,4 +394,10 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        uf.borraGols(getApplicationContext());
+        finish();
+    }
 }

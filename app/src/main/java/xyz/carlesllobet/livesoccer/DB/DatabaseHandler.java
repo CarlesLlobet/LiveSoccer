@@ -16,17 +16,17 @@ import xyz.carlesllobet.livesoccer.Domain.Objects.Jugador;
 import xyz.carlesllobet.livesoccer.Domain.Objects.Partit;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
- 
+
     // All Static variables
     // Database Version
     private static final int DATABASE_VERSION = 1;
- 
+
     // Database Name
     private static final String DATABASE_NAME = "db";
- 
+
     // Teams Table name
     private static final String TABLE_EQUIPS = "equips";
- 
+
     // Teams Table Columns names
     private static final String KEY_NOM_EQUIP = "nomEquip";
     private static final String KEY_ESCUT = "escut";
@@ -59,7 +59,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
- 
+
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -70,23 +70,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_GOL + " INTEGER,"
                 + KEY_GUANYATS + " INTEGER,"
                 + KEY_PERDUTS + " INTEGER,"
-                + KEY_EMPATATS + " INTEGER"+ ")";
+                + KEY_EMPATATS + " INTEGER" + ")";
         String CREATE_JUGADORS_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_JUGADORS + "("
                 + KEY_NAME + " TEXT NOT NULL,"
                 + KEY_DORSAL + " INTEGER NOT NULL,"
                 + KEY_EQUIP + " STRING NOT NULL,"
                 + KEY_TITULAR + " BOOLEAN NOT NULL,"
-                + KEY_GOL + " INTEGER"+ ")";
+                + KEY_GOL + " INTEGER" + ")";
         String CREATE_PARTITS_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_PARTITS + "("
                 + KEY_LOCAL + " TEXT NOT NULL,"
                 + KEY_VISITANT + " TEXT NOT NULL,"
                 + KEY_PUNT_LOCAL + " INTEGER,"
-                + KEY_PUNT_VISITANT + " INTEGER"+ ")";
+                + KEY_PUNT_VISITANT + " INTEGER" + ")";
         db.execSQL(CREATE_EQUIPS_TABLE);
         db.execSQL(CREATE_JUGADORS_TABLE);
         db.execSQL(CREATE_PARTITS_TABLE);
     }
- 
+
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -101,9 +101,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * Storing user details in database
-     * */
+     */
     public boolean addTeam(String nombre, Uri escut) {
-    	db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         String stringUri = escut.toString();
 
         //Si existeix, retorna fals, i no es pot afegir
@@ -132,7 +132,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (checkExist(nombre)) return false;
         if (CheckDorsal(nomEquip, dorsal)) return false;
 
-        if ((nombre.equals("")) || (nomEquip.equals("")) || (dorsal < 0 || dorsal > 99)) return false;
+        if ((nombre.equals("")) || (nomEquip.equals("")) || (dorsal < 0 || dorsal > 99))
+            return false;
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, nombre); // Name
@@ -209,7 +210,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return b;
     }
 
-    public Equip getEquip (String name) {
+    public Equip getEquip(String name) {
         db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
 
@@ -231,25 +232,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public Integer getPosicioEquip (String name) {
+    public Integer getPosicioEquip(String name) {
         db = this.getReadableDatabase();
-        String selectQuery =  "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " ASC";
+        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " ASC";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
-        Integer res = 0;
+        Integer res = 1;
+        Boolean trobat = false;
         if (cursor.moveToFirst()) {
-            while(cursor.moveToNext() && !cursor.getString(0).equals(name)){
-                res += 1;
+            if (cursor.getString(0).equals(name)) return 0;
+            else {
+                while (cursor.moveToNext() && !trobat){
+                    if (!cursor.getString(0).equals(name)) res += 1;
+                    else trobat = true;
+                }
+                cursor.close();
+                Log.d("Posicio",res.toString());
+                return res;
             }
-            cursor.close();
-            return res;
         } else {
             cursor.close();
             return null;
         }
     }
 
-    public Jugador getJugador (String name) {
+    public Jugador getJugador(String name) {
         db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " WHERE " + KEY_NAME + " = '" + name + "'";
 
@@ -261,7 +268,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             res.setDorsal(cursor.getInt(1));
             res.setEquip(cursor.getString(2));
             Boolean b;
-            if (cursor.getInt(3)==1) b = true;
+            if (cursor.getInt(3) == 1) b = true;
             else b = false;
             res.setTitular(b);
             res.setGols(cursor.getInt(4));
@@ -273,7 +280,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public Jugador getJugador (Integer posicio) {
+    public Jugador getJugador(Integer posicio) {
         db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " ORDER BY " + KEY_GOL + " ASC";
 
@@ -284,7 +291,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             res.setDorsal(cursor.getInt(1));
             res.setEquip(cursor.getString(2));
             Boolean b;
-            if (cursor.getInt(3)==1) b = true;
+            if (cursor.getInt(3) == 1) b = true;
             else b = false;
             res.setTitular(b);
             res.setGols(cursor.getInt(4));
@@ -296,7 +303,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public Equip getEquip (Integer posicio) {
+    public Equip getEquip(Integer posicio) {
         db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " ASC";
 
@@ -329,7 +336,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Equip equip = new Equip(cursor.getString(0), Uri.parse(cursor.getString(1)),cursor.getInt(2),cursor.getInt(3),cursor.getInt(4),cursor.getInt(5),cursor.getInt(6));
+                Equip equip = new Equip(cursor.getString(0), Uri.parse(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(5), cursor.getInt(6));
                 // Adding person to list
                 equipsList.add(equip);
             } while (cursor.moveToNext());
@@ -353,7 +360,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Boolean t;
                 if (cursor.getInt(3) == 1) t = true;
                 else t = false;
-                Jugador jugador = new Jugador(cursor.getString(0),cursor.getInt(1),cursor.getString(2),t,cursor.getInt(4));
+                Jugador jugador = new Jugador(cursor.getString(0), cursor.getInt(1), cursor.getString(2), t, cursor.getInt(4));
                 // Adding person to list
                 jugadorsList.add(jugador);
             } while (cursor.moveToNext());
@@ -377,7 +384,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Boolean t;
                 if (cursor.getInt(3) == 1) t = true;
                 else t = false;
-                Jugador jugador = new Jugador(cursor.getString(0),cursor.getInt(1),cursor.getString(2),t,cursor.getInt(4));
+                Jugador jugador = new Jugador(cursor.getString(0), cursor.getInt(1), cursor.getString(2), t, cursor.getInt(4));
                 // Adding person to list
                 jugadorsList.add(jugador);
             } while (cursor.moveToNext());
@@ -400,8 +407,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             do {
                 Jornada j = new Jornada();
                 for (int i = 1; i < 6; ++i) {
-                    Partit partit = new Partit(getEquip(cursor.getString(0)),getEquip(cursor.getString(1)),cursor.getInt(2),cursor.getInt(3));
-                    j.setPartit(i,partit);
+                    Partit partit = new Partit(getEquip(cursor.getString(0)), getEquip(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3));
+                    j.setPartit(i, partit);
                     if (!cursor.isLast()) cursor.moveToNext();
                 }
                 partitsList.add(j);
@@ -759,11 +766,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
         return null;
     }*/
-     
+
     /**
      * Re crate database
      * Delete all tables and create them again
-     * */
+     */
     public void resetTables() {
         db = this.getWritableDatabase();
         // Delete All Rows
@@ -773,7 +780,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void closeDB(){
+    public void closeDB() {
         db.close();
     }
 }

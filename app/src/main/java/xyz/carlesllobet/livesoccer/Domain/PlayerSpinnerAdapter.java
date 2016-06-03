@@ -2,6 +2,7 @@ package xyz.carlesllobet.livesoccer.Domain;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.Gravity;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import xyz.carlesllobet.livesoccer.DB.UserFunctions;
 import xyz.carlesllobet.livesoccer.Domain.Objects.Jugador;
 import xyz.carlesllobet.livesoccer.R;
 import xyz.carlesllobet.livesoccer.UI.NewJornadaActivity;
@@ -53,9 +55,10 @@ public class PlayerSpinnerAdapter extends BaseAdapter implements SpinnerAdapter 
         TextView txt = new TextView(activity);
         txt.setPadding(16, 16, 16, 16);
         txt.setTextSize(18);
+        txt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_soccer_white_24dp, 0, 0, 0);
         txt.setGravity(Gravity.CENTER_VERTICAL);
         txt.setText(asr.get(position).getName());
-        txt.setTextColor(Color.parseColor("#000000"));
+        txt.setTextColor(Color.BLACK);
         return  txt;
     }
 
@@ -64,9 +67,9 @@ public class PlayerSpinnerAdapter extends BaseAdapter implements SpinnerAdapter 
         txt.setGravity(Gravity.CENTER);
         txt.setPadding(16, 16, 16, 16);
         txt.setTextSize(16);
-        txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_account_plus_white_18dp, 0);
+        txt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_soccer_white_24dp, 0, 0, 0);
         txt.setText(asr.get(i).getName());
-        txt.setTextColor(Color.parseColor("#000000"));
+        txt.setTextColor(Color.WHITE);
         return  txt;
     }
 }

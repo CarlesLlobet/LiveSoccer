@@ -12,8 +12,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import xyz.carlesllobet.livesoccer.Domain.Objects.Equip;
-import xyz.carlesllobet.livesoccer.Domain.Objects.Jugador;
-import xyz.carlesllobet.livesoccer.R;
 
 
 public class EquipSpinnerAdapter extends BaseAdapter implements SpinnerAdapter {
@@ -53,7 +51,7 @@ public class EquipSpinnerAdapter extends BaseAdapter implements SpinnerAdapter {
         txt.setTextSize(18);
         txt.setGravity(Gravity.CENTER_VERTICAL);
         txt.setText(asr.get(position).getName());
-        txt.setTextColor(Color.parseColor("#000000"));
+        txt.setTextColor(Color.BLACK);
         return  txt;
     }
 
@@ -62,9 +60,9 @@ public class EquipSpinnerAdapter extends BaseAdapter implements SpinnerAdapter {
         txt.setGravity(Gravity.CENTER);
         txt.setPadding(16, 16, 16, 16);
         txt.setTextSize(16);
-        txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_account_plus_white_18dp, 0);
+        //txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_account_plus_white_18dp, 0);
         txt.setText(asr.get(i).getName());
-        txt.setTextColor(Color.parseColor("#000000"));
+        txt.setTextColor(Color.WHITE);
         return  txt;
     }
 }

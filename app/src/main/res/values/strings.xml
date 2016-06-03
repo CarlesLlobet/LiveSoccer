@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name" translatable="false">LiveSoccer</string>
+
+    <!-- Titulos -->
+
+    <string name="tituloAyuda">Ajuda</string>
+    <string name="tituloDetalles">Detalls equip</string>
+    <string name="tituloHome">Inici</string>
+    <string name="tituloSettings">Preferències</string>
+
+    <string name="account">Cuenta</string>
+    <string name="progress">Procesando...</string>
+    <string name="welcome">Bienvenido a</string>
+
+    <!-- Error Messages -->
+
+    <string name="error1">"La contraseña actual no es correcta!"</string>
+    <string name="error2">"Las contraseñas no coinciden!"</string>
+    <string name="error3">"Datos incorrectos. Prueba con otro username o contraseña"</string>
+
+    <!-- Login Fields -->
+    <string name="user">"Usuario:"</string>
+    <string name="passwd">"Contraseña:"</string>
+    <string name="error">"Error"</string>
+    <string name="loginFail">"El usuario o contraseña introducidos no son correctos"</string>
+
+
+    <!-- ChangeUser Fields -->
+    <string name="oldPasswd">"Contraseña actual:"</string>
+    <string name="newPasswd">"Nueva contraseña:"</string>
+    <string name="newPasswd2">"Repita la nueva contraseña:"</string>
+
+    <!-- ProductsFragment Fields -->
+    <string name="deleteUser">"Eliminar"</string>
+    <string name="deleteUserText">"Seguro que quieres eliminar el usuario: "</string>
+
+    <!-- Buttons -->
+    <string name="btnEnter">Entrar</string>
+    <string name="btnChange">Cambiar</string>
+    <string name="btnAddUser">Añadir usuario</string>
+    <string name="btnChangePasswd">Cambiar contraseña</string>
+    <string name="btnRegister">   Registrar-se</string>
+    <string name="btnDelete">   Baixa</string>
+    <string name="btnRetry">   Reintentar</string>
+
+    <!-- Otros -->
+    <string name="action_settings">Ajustes</string>
+    <string name="openDrawer">Open Drawer</string>
+    <string name="closeDrawer">Cerrar menu</string>
+    <string name="helpHome">
+        Este reproductor de musica te permitirá:\n\n
+
+        <u>-Forward:</u> Lleva el audio al principio otra vez\n
+        <u>-Play/Pausa:</u> Permite pausar la reproducción y retomarla en el punto donde la habias pausado\n
+        <u>-Stop:</u> Detiene el audio y lo lleva al principio\n
+        <u>-Loop:</u> Pone la reproducción en modo "Repetir", por lo que cuando el audio finaliza, vuelve a reproducirse\n
+    </string>
+    <string name="helpMenu">Para añadir un elemento a tu lista de la compra, pasa un tag NFC o pulsa el boton</string>
+    <string name="helpSettings">
+        En ajustes puedes ver toda tu información personal para verificarla.\n
+        En caso de error o cambio en algun dato, habla con el administrador para modificarlo.\n\n
+
+        El boton de <b>Cerrar sesión</b> te permitira cerrar la sesión para que nadie pueda acceder a tu cuenta ni información personal.
+    </string>
+    <string name="btnClose">Cerrar</string>
+    <string name="spa">Español</string>
+    <string name="cat">Catalan</string>
+    <string name="en">Inglés</string>
+    <string name="language">El idioma cambiará al cambiar de pantalla</string>
+
+    <!-- detalls equip -->
+    <string name="punt">Puntuació:</string>
+    <string name="pg">Partits guanyats:</string>
+    <string name="pp">Partits perduts:</string>
+    <string name="pe">Partits empatats:</string>
+    <string name="gols">Gols a lliga:</string>
+    <string name="plantilla">Plantilla:</string>
+    <string name="equip">Equip:</string>
+</resources>

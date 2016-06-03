@@ -231,11 +231,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
+    public Integer getPosicioEquip (String name) {
+        db = this.getReadableDatabase();
+        String selectQuery =  "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " ASC";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        Integer res = 0;
+        if (cursor.moveToFirst()) {
+            while(cursor.moveToNext() && !cursor.getString(0).equals(name)){
+                res += 1;
+            }
+            cursor.close();
+            return res;
+        } else {
+            cursor.close();
+            return null;
+        }
+    }
+
     public Jugador getJugador (String name) {
         db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " WHERE " + KEY_NAME + " = '" + name + "'";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.getPosition();
         if (cursor.moveToFirst()) {
             Jugador res = new Jugador();
             res.setName(cursor.getString(0));

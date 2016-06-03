@@ -55,6 +55,10 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
     private Equip local;
     private Equip visitant;
 
+    private Spinner spinnerGols;
+    private Spinner spinnerEquip1;
+    private Spinner spinnerEquip2;
+
     private UserFunctions uf;
 
     @Override
@@ -77,7 +81,7 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
 
         mLinearLayout = new LinearLayoutManager(this);
 
-        local = visitant = null;
+        local = visitant = uf.getEquip(getApplicationContext(),0);
 
         titol = (TextView) findViewById(R.id.partit);
 
@@ -102,9 +106,9 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
         mRecyclerView.setAdapter(gols);
 
 
-        Spinner spinnerGols = (Spinner) findViewById(R.id.spinner);
-        Spinner spinnerEquip1 = (Spinner) findViewById(R.id.team1);
-        Spinner spinnerEquip2 = (Spinner) findViewById(R.id.team2);
+        spinnerGols = (Spinner) findViewById(R.id.spinner);
+        spinnerEquip1 = (Spinner) findViewById(R.id.team1);
+        spinnerEquip2 = (Spinner) findViewById(R.id.team2);
         // Spinner Drop down elements
         ArrayList<Jugador> jugadors = uf.getJugadors(getApplicationContext());
         ArrayList<Equip> equips = uf.getEquips(getApplicationContext());
@@ -179,8 +183,16 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                         titol.setText("Partit 1");
                         gols = new GolsAdapter(getApplicationContext(), titol.getText().toString());
                         mRecyclerView.setAdapter(gols);
-                        local = visitant = null;
-
+                        local = partit1.getLocal();
+                        visitant = partit1.getVisitant();
+                        if (local!=null && visitant!=null) {
+                            spinnerEquip1.setSelection(uf.getPosicioEquip(getApplicationContext(), local.getName()));
+                            spinnerEquip2.setSelection(uf.getPosicioEquip(getApplicationContext(), visitant.getName()));
+                        } else {
+                            spinnerEquip1.setSelection(0);
+                            spinnerEquip2.setSelection(0);
+                            local = visitant = uf.getEquip(getApplicationContext(),0);
+                        }
                         left.setVisibility(View.INVISIBLE);
                         left.setClickable(false);
                         break;
@@ -193,7 +205,16 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                         titol.setText("Partit 2");
                         gols = new GolsAdapter(getApplicationContext(), titol.getText().toString());
                         mRecyclerView.setAdapter(gols);
-                        local = visitant = null;
+                        local = partit2.getLocal();
+                        visitant = partit2.getVisitant();
+                        if (local!=null && visitant!=null) {
+                            spinnerEquip1.setSelection(uf.getPosicioEquip(getApplicationContext(), local.getName()));
+                            spinnerEquip2.setSelection(uf.getPosicioEquip(getApplicationContext(), visitant.getName()));
+                        } else {
+                            spinnerEquip1.setSelection(0);
+                            spinnerEquip2.setSelection(0);
+                            local = visitant = uf.getEquip(getApplicationContext(),0);
+                        }
                         break;
                     case "Partit 4":
                         //Guardem els gols fets al partit i els equips seleccionats
@@ -204,7 +225,16 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                         titol.setText("Partit 3");
                         gols = new GolsAdapter(getApplicationContext(), titol.getText().toString());
                         mRecyclerView.setAdapter(gols);
-                        local = visitant = null;
+                        local = partit3.getLocal();
+                        visitant = partit3.getVisitant();
+                        if (local!=null && visitant!=null) {
+                            spinnerEquip1.setSelection(uf.getPosicioEquip(getApplicationContext(), local.getName()));
+                            spinnerEquip2.setSelection(uf.getPosicioEquip(getApplicationContext(), visitant.getName()));
+                        } else {
+                            spinnerEquip1.setSelection(0);
+                            spinnerEquip2.setSelection(0);
+                            local = visitant = uf.getEquip(getApplicationContext(),0);
+                        }
                         break;
                     case "Partit 5":
                         //Guardem els gols fets al partit i els equips seleccionats
@@ -215,7 +245,16 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                         titol.setText("Partit 4");
                         gols = new GolsAdapter(getApplicationContext(), titol.getText().toString());
                         mRecyclerView.setAdapter(gols);
-                        local = visitant = null;
+                        local = partit4.getLocal();
+                        visitant = partit4.getVisitant();
+                        if (local!=null && visitant!=null) {
+                            spinnerEquip1.setSelection(uf.getPosicioEquip(getApplicationContext(), local.getName()));
+                            spinnerEquip2.setSelection(uf.getPosicioEquip(getApplicationContext(), visitant.getName()));
+                        } else {
+                            spinnerEquip1.setSelection(0);
+                            spinnerEquip2.setSelection(0);
+                            local = visitant = uf.getEquip(getApplicationContext(),0);
+                        }
                         //Set icono i background verd
                         right.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                         right.setBackgroundResource(R.drawable.ic_arrow_right_bold_white_18dp);
@@ -227,7 +266,6 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                 switch (titol.getText().toString()) {
                     case "Partit 1":
                         if (!local.getName().equals(visitant.getName())) {
-                            Log.d("Hey", "No som iguals");
                             //Guardem els gols fets al partit i els equips seleccionats
                             partit1.setGolejadors(gols.getItems());
                             partit1.setLocal(local);
@@ -239,7 +277,16 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                             //Activem boto esquerre
                             left.setVisibility(View.VISIBLE);
                             left.setClickable(true);
-                            local = visitant = null;
+                            local = partit2.getLocal();
+                            visitant = partit2.getVisitant();
+                            if (local!=null && visitant!=null) {
+                                spinnerEquip1.setSelection(uf.getPosicioEquip(getApplicationContext(), local.getName()));
+                                spinnerEquip2.setSelection(uf.getPosicioEquip(getApplicationContext(), visitant.getName()));
+                            } else {
+                                spinnerEquip1.setSelection(0);
+                                spinnerEquip2.setSelection(0);
+                                local = visitant = uf.getEquip(getApplicationContext(),0);
+                            }
                         } else {
                             Toast.makeText(this, "Un equip no pot jugar contra si mateix", Toast.LENGTH_SHORT).show();
                         }
@@ -254,7 +301,16 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                             titol.setText("Partit 3");
                             gols = new GolsAdapter(getApplicationContext(), titol.getText().toString());
                             mRecyclerView.setAdapter(gols);
-                            local = visitant = null;
+                            local = partit3.getLocal();
+                            visitant = partit3.getVisitant();
+                            if (local!=null && visitant!=null) {
+                                spinnerEquip1.setSelection(uf.getPosicioEquip(getApplicationContext(), local.getName()));
+                                spinnerEquip2.setSelection(uf.getPosicioEquip(getApplicationContext(), visitant.getName()));
+                            } else {
+                                spinnerEquip1.setSelection(0);
+                                spinnerEquip2.setSelection(0);
+                                local = visitant = uf.getEquip(getApplicationContext(),0);
+                            }
                         } else {
                             Toast.makeText(this, "Un equip no pot jugar contra si mateix", Toast.LENGTH_SHORT).show();
                         }
@@ -269,7 +325,16 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                             titol.setText("Partit 4");
                             gols = new GolsAdapter(getApplicationContext(), titol.getText().toString());
                             mRecyclerView.setAdapter(gols);
-                            local = visitant = null;
+                            local = partit4.getLocal();
+                            visitant = partit4.getVisitant();
+                            if (local!=null && visitant!=null) {
+                                spinnerEquip1.setSelection(uf.getPosicioEquip(getApplicationContext(), local.getName()));
+                                spinnerEquip2.setSelection(uf.getPosicioEquip(getApplicationContext(), visitant.getName()));
+                            } else {
+                                spinnerEquip1.setSelection(0);
+                                spinnerEquip2.setSelection(0);
+                                local = visitant = uf.getEquip(getApplicationContext(),0);
+                            }
                         } else {
                             Toast.makeText(this, "Un equip no pot jugar contra si mateix", Toast.LENGTH_SHORT).show();
                         }
@@ -284,7 +349,16 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                             titol.setText("Partit 5");
                             gols = new GolsAdapter(getApplicationContext(), titol.getText().toString());
                             mRecyclerView.setAdapter(gols);
-                            local = visitant = null;
+                            local = partit5.getLocal();
+                            visitant = partit5.getVisitant();
+                            if (local!=null && visitant!=null) {
+                                spinnerEquip1.setSelection(uf.getPosicioEquip(getApplicationContext(), local.getName()));
+                                spinnerEquip2.setSelection(uf.getPosicioEquip(getApplicationContext(), visitant.getName()));
+                            } else {
+                                spinnerEquip1.setSelection(0);
+                                spinnerEquip2.setSelection(0);
+                                local = visitant = uf.getEquip(getApplicationContext(),0);
+                            }
                             //Set icono i background verd
                             right.setBackgroundColor(getResources().getColor(R.color.colorAccent2));
                             right.setBackgroundResource(R.drawable.ic_check_white_18dp);

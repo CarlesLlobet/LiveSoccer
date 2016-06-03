@@ -50,6 +50,13 @@ public class UserFunctions {
         return equip;
     }
 
+    public Integer getPosicioEquip(Context context, String nombre){
+        DatabaseHandler db = new DatabaseHandler(context);
+        Integer posEquip = db.getPosicioEquip(nombre);
+        db.closeDB();
+        return posEquip;
+    }
+
     public Jugador getJugador(Context context, String nombre){
         DatabaseHandler db = new DatabaseHandler(context);
         Jugador jugador = db.getJugador(nombre);

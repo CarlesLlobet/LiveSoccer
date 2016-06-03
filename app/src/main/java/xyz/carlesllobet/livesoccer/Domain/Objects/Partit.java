@@ -69,4 +69,9 @@ public class Partit {
     public ArrayList<Jugador> getGolejadors(){ return this.golejadors; }
 
     public void setGolejadors(ArrayList<Jugador> g){ this.golejadors = g; }
+
+    public void setLocal(Equip l){ this.local = l; }
+    public void setVisitant(Equip v){ this.visitant = v; }
+    public void setPuntuacioLocal(Integer l){ this.puntuacioLocal = l; }
+    public void setPuntuacioVisitant(Integer v){ this.puntuacioLocal = v; }
 }

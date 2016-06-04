@@ -162,7 +162,7 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                 new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        //uf.borraGol(getApplicationContext(),titol.getText().toString(),position);
+                        uf.borraGol(getApplicationContext(),titol.getText().toString(),position);
                         gols = new GolsAdapter(getApplicationContext(), titol.getText().toString());
                         mRecyclerView.setAdapter(gols);
                     }

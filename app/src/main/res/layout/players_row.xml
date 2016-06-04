@@ -46,7 +46,7 @@
             android:id="@+id/guio"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text=""
+            android:text="-"
             android:textSize="25dp"
             android:textColor="@color/text"
             android:layout_gravity="center_vertical"

@@ -16,19 +16,19 @@ import xyz.carlesllobet.livesoccer.Domain.Objects.Jugador;
 import xyz.carlesllobet.livesoccer.R;
 
 
-public class GolsAdapter extends RecyclerView.Adapter<GolsAdapter.AdapterViewHolder> {
+public class PartitAdapter extends RecyclerView.Adapter<PartitAdapter.AdapterViewHolder> {
     ArrayList<Jugador> gols;
     UserFunctions userFunctions = new UserFunctions();
     private Context context;
 
-    public GolsAdapter(Context con,String partit){
+    public PartitAdapter(Context con, ArrayList<Jugador> golejadors){
         context = con;
-        gols = userFunctions.getGols(con,partit);
+        gols = golejadors;
     }
 
 
     @Override
-    public GolsAdapter.AdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public PartitAdapter.AdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         //Instancia un layout XML en la correspondiente vista.
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         //Inflamos en la vista el layout para cada elemento
@@ -37,7 +37,7 @@ public class GolsAdapter extends RecyclerView.Adapter<GolsAdapter.AdapterViewHol
     }
 
     @Override
-    public void onBindViewHolder(GolsAdapter.AdapterViewHolder adapterViewholder, int position) {
+    public void onBindViewHolder(PartitAdapter.AdapterViewHolder adapterViewholder, int position) {
         Equip equipDelJugador = userFunctions.getEquip(context,gols.get(position).getEquip());
         adapterViewholder.name.setText(gols.get(position).getName());
         adapterViewholder.escut.setImageURI(equipDelJugador.getEscut());

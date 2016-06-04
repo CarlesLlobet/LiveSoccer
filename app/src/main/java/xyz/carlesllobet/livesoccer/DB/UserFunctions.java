@@ -79,6 +79,13 @@ public class UserFunctions {
         return equip;
     }
 
+    public Jornada getJornada(Context context, Integer pos){
+        DatabaseHandler db = new DatabaseHandler(context);
+        Jornada jornada = db.getJornada(pos);
+        db.closeDB();
+        return jornada;
+    }
+
     public boolean addPartit(Context context, Equip local, Equip visitant, ArrayList<Jugador> golejadors){
         DatabaseHandler db = new DatabaseHandler(context);
         boolean res = db.addPartit(local.getName(), visitant.getName(), golejadors);

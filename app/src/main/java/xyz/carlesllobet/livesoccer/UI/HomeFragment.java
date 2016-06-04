@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import xyz.carlesllobet.livesoccer.DB.UserFunctions;
 import xyz.carlesllobet.livesoccer.Domain.RecyclerItemClickListener;
 import xyz.carlesllobet.livesoccer.R;
 
@@ -86,19 +85,21 @@ public class HomeFragment extends Fragment {
                         switch (tab) {
                             case 1:
                                 //Activity de veure dades partit
-                                //startActivity(new Intent(context, HelpActivity.class));
+                                Intent i = new Intent(context, JornadaActivity.class);
+                                i.putExtra("jornada", position);
+                                startActivity(i);
                                 break;
                             case 2:
                                 //Activity de veure dades equip
-                                Intent i = new Intent(context, EquipActivity.class);
-                                i.putExtra("equip", position);
-                                startActivity(i);
+                                Intent i2 = new Intent(context, EquipActivity.class);
+                                i2.putExtra("equip", position);
+                                startActivity(i2);
                                 break;
                             case 3:
                                 //Activity de veure dades jugador
-                                Intent i2 = new Intent(context, JugadorActivity.class);
-                                i2.putExtra("jugador", position);
-                                startActivity(i2);
+                                Intent i3 = new Intent(context, JugadorActivity.class);
+                                i3.putExtra("jugador", position);
+                                startActivity(i3);
                                 break;
                         }
                     }

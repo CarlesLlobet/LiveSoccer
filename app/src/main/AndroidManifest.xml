@@ -34,6 +34,11 @@
             android:label="@string/app_name">
         </activity>
         <activity
+            android:name=".UI.JornadaActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name">
+        </activity>
+        <activity
             android:name=".UI.JugadorActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name">

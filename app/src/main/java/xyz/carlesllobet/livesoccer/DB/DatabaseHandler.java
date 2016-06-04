@@ -158,7 +158,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if ((!checkExist(nomLocal)) || !checkExist(nomVisitant)) return false;
         String csv = "";
         if (golejadors.size() > 0) csv = golejadors.get(0).getName();
-        for (int i = 0; i < golejadors.size(); i++){
+        for (int i = 0; i < golejadors.size(); i++) {
             csv += ",";
             csv += golejadors.get(i).getName();
             addGolJugador(golejadors.get(i).getName());
@@ -172,22 +172,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_VISITANT, nomVisitant); // Nom Visitant
         values.put(KEY_PUNT_LOCAL, golsLocal); // Gols
         values.put(KEY_PUNT_VISITANT, golsVisitant); // Gols
-        values.put(KEY_GOLEJADORS,csv);
+        values.put(KEY_GOLEJADORS, csv);
 
         //Afegir guanyat/perdut/empatat i puntsLliga als dos equips
-        if (golsLocal > golsVisitant){
-            addPuntsEquip(nomLocal,3);
-            addGpeEquip(nomLocal,"Guanyat");
-            addGpeEquip(nomVisitant,"Perdut");
-        } else if (golsLocal < golsVisitant){
-            addPuntsEquip(nomVisitant,3);
-            addGpeEquip(nomLocal,"Perdut");
-            addGpeEquip(nomVisitant,"Guanyat");
+        if (golsLocal > golsVisitant) {
+            addPuntsEquip(nomLocal, 3);
+            addGpeEquip(nomLocal, "Guanyat");
+            addGpeEquip(nomVisitant, "Perdut");
+        } else if (golsLocal < golsVisitant) {
+            addPuntsEquip(nomVisitant, 3);
+            addGpeEquip(nomLocal, "Perdut");
+            addGpeEquip(nomVisitant, "Guanyat");
         } else {
-            addPuntsEquip(nomLocal,1);
-            addPuntsEquip(nomVisitant,1);
-            addGpeEquip(nomLocal,"Empatat");
-            addGpeEquip(nomVisitant,"Empatat");
+            addPuntsEquip(nomLocal, 1);
+            addPuntsEquip(nomVisitant, 1);
+            addGpeEquip(nomLocal, "Empatat");
+            addGpeEquip(nomVisitant, "Empatat");
         }
 
         // Inserting Row
@@ -197,7 +197,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Boolean addGolEquip(String name) {
         db = this.getWritableDatabase();
-        String updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_GOL + " = "+ KEY_GOL + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+        String updateQuery = "UPDATE " + TABLE_EQUIPS + " SET " + KEY_GOL + " = " + KEY_GOL + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
 
         db.execSQL(updateQuery);
         return true;
@@ -205,16 +205,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Boolean addGpeEquip(String name, String resultat) {
         db = this.getWritableDatabase();
-        String updateQuery = "SELECT * FROM "+ TABLE_EQUIPS;
-        switch (resultat){
+        String updateQuery = "SELECT * FROM " + TABLE_EQUIPS;
+        switch (resultat) {
             case "Guanyat":
-                updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_GUANYATS + " = "+ KEY_GUANYATS + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+                updateQuery = "UPDATE " + TABLE_EQUIPS + " SET " + KEY_GUANYATS + " = " + KEY_GUANYATS + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
                 break;
             case "Perdut":
-                updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_PERDUTS + " = "+ KEY_PERDUTS + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+                updateQuery = "UPDATE " + TABLE_EQUIPS + " SET " + KEY_PERDUTS + " = " + KEY_PERDUTS + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
                 break;
             case "Empatat":
-                updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_EMPATATS + " = "+ KEY_EMPATATS + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+                updateQuery = "UPDATE " + TABLE_EQUIPS + " SET " + KEY_EMPATATS + " = " + KEY_EMPATATS + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
                 break;
         }
 
@@ -224,7 +224,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Boolean addPuntsEquip(String name, Integer punts) {
         db = this.getWritableDatabase();
-        String updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_PUNT + " = "+ KEY_PUNT + "+" + punts + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+        String updateQuery = "UPDATE " + TABLE_EQUIPS + " SET " + KEY_PUNT + " = " + KEY_PUNT + "+" + punts + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
 
         db.execSQL(updateQuery);
         return true;
@@ -232,7 +232,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Boolean addGolJugador(String name) {
         db = this.getWritableDatabase();
-        String updateQuery = "UPDATE "+ TABLE_JUGADORS +" SET " + KEY_GOL + " = "+ KEY_GOL + "+1 WHERE " + KEY_NAME + " = '" + name + "'";
+        String updateQuery = "UPDATE " + TABLE_JUGADORS + " SET " + KEY_GOL + " = " + KEY_GOL + "+1 WHERE " + KEY_NAME + " = '" + name + "'";
 
         db.execSQL(updateQuery);
         return true;
@@ -316,12 +316,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             if (cursor.getString(0).equals(name)) return 0;
             else {
-                while (cursor.moveToNext() && !trobat){
+                while (cursor.moveToNext() && !trobat) {
                     if (!cursor.getString(0).equals(name)) res += 1;
                     else trobat = true;
                 }
                 cursor.close();
-                Log.d("Posicio",res.toString());
+                Log.d("Posicio", res.toString());
                 return res;
             }
         } else {
@@ -468,6 +468,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return jugadorsList;
     }
 
+    public Jornada getJornada(Integer posicio) {
+        Jornada jornada = new Jornada();
+        String selectQuery = "SELECT  * FROM " + TABLE_PARTITS;
+
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToPosition(posicio)) {
+            for (int i = 1; i < 6; i++) {
+                ArrayList<Jugador> golejadors = new ArrayList<Jugador>();
+                String[] csv = (cursor.getString(4)).split(",");
+                for (int j = 0; j < csv.length; j++) {
+                    golejadors.add(getJugador(csv[j]));
+                }
+                Partit res = new Partit(getEquip(cursor.getString(0)), getEquip(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3), golejadors);
+                jornada.setPartit(i, res);
+                if (!cursor.isLast()) cursor.moveToNext();
+            }
+            cursor.close();
+            return jornada;
+        } else {
+            cursor.close();
+            return null;
+        }
+    }
+
     public ArrayList<Jornada> getPartits() {
         ArrayList<Jornada> partitsList = new ArrayList<Jornada>();
         // Select All Query
@@ -486,7 +511,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     for (int j = 0; j < csv.length; j++) {
                         golejadors.add(getJugador(csv[j]));
                     }
-                    Partit partit = new Partit(getEquip(cursor.getString(0)), getEquip(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3),golejadors);
+                    Partit partit = new Partit(getEquip(cursor.getString(0)), getEquip(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3), golejadors);
                     jornada.setPartit(i, partit);
                     if (!cursor.isLast()) cursor.moveToNext();
                 }

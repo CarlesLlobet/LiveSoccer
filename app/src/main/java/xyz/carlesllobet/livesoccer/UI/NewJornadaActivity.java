@@ -1,6 +1,7 @@
 package xyz.carlesllobet.livesoccer.UI;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -256,8 +257,8 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                             local = visitant = uf.getEquip(getApplicationContext(),0);
                         }
                         //Set icono i background verd
-                        right.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                        right.setBackgroundResource(R.drawable.ic_arrow_right_bold_white_18dp);
+                        right.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+                        right.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_right_bold_white_18dp));
                         //carregar gols partit 1
                         break;
                 }
@@ -360,8 +361,8 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                                 local = visitant = uf.getEquip(getApplicationContext(),0);
                             }
                             //Set icono i background verd
-                            right.setBackgroundColor(getResources().getColor(R.color.colorAccent2));
-                            right.setBackgroundResource(R.drawable.ic_check_white_18dp);
+                            right.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent2)));
+                            right.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_white_18dp));
                         } else {
                             Toast.makeText(this, "Un equip no pot jugar contra si mateix", Toast.LENGTH_SHORT).show();
                         }

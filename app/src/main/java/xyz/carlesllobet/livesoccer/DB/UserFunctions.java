@@ -136,8 +136,6 @@ public class UserFunctions {
     }
 
     public void borraGol(Context context, String partit, Integer posicio){
-        //posicio += 1;
-        Log.d("Posicio",posicio.toString());
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String res = preferences.getString(partit,"");
         String[] jugadors = (res).split(",");
@@ -145,7 +143,6 @@ public class UserFunctions {
             if (posicio==0) {
                 res = jugadors[1];
                 for (int i = 2; i < jugadors.length; ++i) {
-                        Log.d("afegint",String.valueOf(i));
                         res += ",";
                         res += jugadors[i];
                 }
@@ -153,7 +150,6 @@ public class UserFunctions {
                 res = jugadors[0];
                 for (int i = 1; i < jugadors.length; ++i) {
                     if (posicio+1 != i) {
-                        Log.d("afegint", String.valueOf(i));
                         res += ",";
                         res += jugadors[i];
                     }

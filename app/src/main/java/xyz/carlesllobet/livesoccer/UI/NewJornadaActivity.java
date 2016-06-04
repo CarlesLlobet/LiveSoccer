@@ -399,11 +399,11 @@ public class NewJornadaActivity extends AppCompatActivity implements View.OnClic
                                 partit5.setLocal(local);
                                 partit5.setVisitant(visitant);
                                 //Confirmem els partits a la DB
-                                uf.addPartit(getApplicationContext(), partit1.getLocal(), partit1.getVisitant(), partit1.getPuntLocal(), partit1.getPuntVisitant());
-                                uf.addPartit(getApplicationContext(), partit2.getLocal(), partit2.getVisitant(), partit2.getPuntLocal(), partit2.getPuntVisitant());
-                                uf.addPartit(getApplicationContext(), partit3.getLocal(), partit3.getVisitant(), partit3.getPuntLocal(), partit3.getPuntVisitant());
-                                uf.addPartit(getApplicationContext(), partit4.getLocal(), partit4.getVisitant(), partit4.getPuntLocal(), partit4.getPuntVisitant());
-                                uf.addPartit(getApplicationContext(), partit5.getLocal(), partit5.getVisitant(), partit5.getPuntLocal(), partit5.getPuntVisitant());
+                                uf.addPartit(getApplicationContext(), partit1.getLocal(), partit1.getVisitant(), partit1.getGolejadors());
+                                uf.addPartit(getApplicationContext(), partit2.getLocal(), partit2.getVisitant(), partit2.getGolejadors());
+                                uf.addPartit(getApplicationContext(), partit3.getLocal(), partit3.getVisitant(), partit3.getGolejadors());
+                                uf.addPartit(getApplicationContext(), partit4.getLocal(), partit4.getVisitant(), partit4.getGolejadors());
+                                uf.addPartit(getApplicationContext(), partit5.getLocal(), partit5.getVisitant(), partit5.getGolejadors());
                                 uf.borraGols(getApplicationContext());
                                 startActivity(new Intent(NewJornadaActivity.this, HomeActivity.class));
                                 Toast.makeText(this, "Jornada creada", Toast.LENGTH_SHORT).show();

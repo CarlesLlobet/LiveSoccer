@@ -79,9 +79,9 @@ public class UserFunctions {
         return equip;
     }
 
-    public boolean addPartit(Context context, Equip local, Equip visitant, Integer golsLocal, Integer golsVisitant){
+    public boolean addPartit(Context context, Equip local, Equip visitant, ArrayList<Jugador> golejadors){
         DatabaseHandler db = new DatabaseHandler(context);
-        boolean res = db.addPartit(local.getName(), visitant.getName(), golsLocal, golsVisitant);
+        boolean res = db.addPartit(local.getName(), visitant.getName(), golejadors);
         db.closeDB();
         return res;
     }
@@ -342,19 +342,75 @@ public class UserFunctions {
             addJugador(context,"Castillejo",28,"Villareal",false);
             addJugador(context,"Denis",29,"Villareal",false);
 
+            //Creem arraylist de jugadors per cada partit
+            ArrayList<Jugador> partit1 = new ArrayList<Jugador>();
+            ArrayList<Jugador> partit2 = new ArrayList<Jugador>();
+            ArrayList<Jugador> partit3 = new ArrayList<Jugador>();
+            ArrayList<Jugador> partit4 = new ArrayList<Jugador>();
+            ArrayList<Jugador> partit5 = new ArrayList<Jugador>();
+            ArrayList<Jugador> partit6 = new ArrayList<Jugador>();
+            ArrayList<Jugador> partit7 = new ArrayList<Jugador>();
+            ArrayList<Jugador> partit8 = new ArrayList<Jugador>();
+            ArrayList<Jugador> partit9 = new ArrayList<Jugador>();
+            ArrayList<Jugador> partit10 = new ArrayList<Jugador>();
+
+            //Fiquem valors partit 1
+            partit1.add(getJugador(context,"Iraizoz"));
+            partit1.add(getJugador(context,"Susaeta"));
+            partit1.add(getJugador(context,"Juanfran"));
+
+            //Fiquem valors partit 2
+            partit2.add(getJugador(context,"Messi"));
+            partit2.add(getJugador(context,"Messi"));
+            partit2.add(getJugador(context,"Puyol"));
+            partit2.add(getJugador(context,"Iniesta"));
+            partit2.add(getJugador(context,"Bartra"));
+            partit2.add(getJugador(context,"Nolito"));
+
+            //Fiquem valors partit 3
+            partit3.add(getJugador(context,"Cifuentes"));
+            partit3.add(getJugador(context,"Camacho"));
+            partit3.add(getJugador(context,"Betancor"));
+
+            //Fiquem valors partit 4
+            partit4.add(getJugador(context,"Coke"));
+            partit4.add(getJugador(context,"Iborra"));
+            partit4.add(getJugador(context,"Bale"));
+
+            //Fiquem valors partit 6
+            partit6.add(getJugador(context,"Torres"));
+            partit6.add(getJugador(context,"Susaeta"));
+
+            //Fiquem valors partit 7
+            partit7.add(getJugador(context,"Bartra"));
+            partit7.add(getJugador(context,"Messi"));
+            partit7.add(getJugador(context,"Nolito"));
+
+            //Fiquem valors partit 8
+            partit8.add(getJugador(context,"Camacho"));
+            partit8.add(getJugador(context,"Betancor"));
+
+            //Fiquem valors partit 9
+            partit9.add(getJugador(context,"C.Ronaldo"));
+
+            //Fiquem valors partit 10
+            partit10.add(getJugador(context,"Dos Santos"));
+            partit10.add(getJugador(context,"Sito"));
+            partit10.add(getJugador(context,"Alves"));
+
             //Jornada d'anada
-            addPartit(context, getEquip(context, "Athletic"), getEquip(context, "Atlético"), 2, 1);
-            addPartit(context, getEquip(context, "Barcelona"), getEquip(context, "Celta"), 6, 0);
-            addPartit(context, getEquip(context, "Palmas"), getEquip(context, "Málaga"), 1, 1);
-            addPartit(context, getEquip(context, "R.Madrid"), getEquip(context, "Sevilla"), 3, 2);
-            addPartit(context, getEquip(context, "Valencia"), getEquip(context, "Villareal"), 2, 1);
+            addPartit(context, getEquip(context, "Athletic"), getEquip(context, "Atlético"), partit1);
+            addPartit(context, getEquip(context, "Barcelona"), getEquip(context, "Celta"), partit2);
+            addPartit(context, getEquip(context, "Palmas"), getEquip(context, "Málaga"), partit3);
+            addPartit(context, getEquip(context, "R.Madrid"), getEquip(context, "Sevilla"), partit4);
+            addPartit(context, getEquip(context, "Valencia"), getEquip(context, "Villareal"), partit5);
 
             //Jornada de tornada
-            addPartit(context,getEquip(context,"Atlético"),getEquip(context,"Athletic"),3,0);
-            addPartit(context,getEquip(context,"Celta"),getEquip(context,"Barcelona"),1,5);
-            addPartit(context,getEquip(context,"Málaga"),getEquip(context,"Palmas"),2,1);
-            addPartit(context,getEquip(context,"Sevilla"),getEquip(context,"R.Madrid"),2,2);
-            addPartit(context,getEquip(context,"Villareal"),getEquip(context,"Valencia"),3,2);
+            addPartit(context,getEquip(context,"Atlético"),getEquip(context,"Athletic"),partit6);
+            addPartit(context,getEquip(context,"Celta"),getEquip(context,"Barcelona"),partit7);
+            addPartit(context,getEquip(context,"Málaga"),getEquip(context,"Palmas"),partit8);
+            addPartit(context,getEquip(context,"Sevilla"),getEquip(context,"R.Madrid"),partit9);
+            addPartit(context,getEquip(context,"Villareal"),getEquip(context,"Valencia"),partit10);
 
             //Guardem que s'han posat els valors inicials
             SharedPreferences.Editor editor = preferences.edit();
@@ -363,175 +419,4 @@ public class UserFunctions {
             return false;
         } else return true;
     }
-
-    /*
-
-    /*public boolean isUserAdmin(Context context) { //S'ha de fer amb SharedPreferences
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (preferences.getString("userName", "").equals("admin")) return true;
-        return false;
-    }
-
-    public boolean loginUser(Context context, String user, String password) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        boolean res;
-        //if ((!user.equals("admin"))||(!password.equals("4dm1n")))
-        res = db.SignIn(user, password);
-        //else res = true;
-        if (res) {
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-            SharedPreferences.Editor editor = preferences.edit();
-
-            editor.putString("userName", user);
-            editor.commit();
-        }
-        return res;
-    }
-
-    public boolean isUserLoggedIn(Context context) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (preferences.contains("userName")) return true;
-        return false;
-    }
-
-    public String getUserName (Context context){
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String res = preferences.getString("userName", "");
-        return res;
-    }
-
-    public String getName(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        String res = db.getName(username);
-        return res;
-    }
-
-    public String getLang(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        String res = db.getLang(username);
-        return res;
-    }
-
-    public String getPass(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        String res = db.getPass(username);
-        return res;
-    }
-
-    public String getAddress(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        String res = db.getAddress(username);
-        return res;
-    }
-
-    public Uri getFoto(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        Uri res = db.getFoto(username);
-        return res;
-    }
-
-    public boolean getNotif(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        String res = db.getNotif(username);
-        return res.equals("true");
-    }
-
-    public boolean getTuto(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        String res = db.getTuto(username);
-        return res.equals("true");
-    }
-
-    public boolean getToast(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        String res = db.getToast(username);
-        return res.equals("true");
-    }
-
-    public String getLastNotif(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        String res = db.getLastNotif(username);
-        return res;
-    }
-
-    public Integer getPunt(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        Integer res = db.getPunt(username);
-        return res;
-    }
-
-    public Integer getPunt2(Context context, String username) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        Integer res = db.getPunt2(username);
-        return res;
-    }
-
-    public boolean registerUser(Context context, String nombre, String username, String password, String address, boolean tutorial) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        String tuto = "true";
-        if (!tutorial) tuto = "false";
-        boolean res = db.addUser(nombre, username, password, address, tuto);
-        return res;
-    }
-
-    public boolean setNotif(Context context, String username, boolean notif) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        boolean res = db.setNotif(username, notif);
-        return res;
-    }
-
-    public boolean setLang(Context context, String username, String lang) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        boolean res = db.setLang(username, lang);
-        return res;
-    }
-
-    public boolean setTuto(Context context, String username, boolean tuto) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        boolean res = db.setTuto(username, tuto);
-        return res;
-    }
-
-    public boolean setToast(Context context, String username, boolean toast) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        boolean res = db.setToast(username, toast);
-        return res;
-    }
-
-    public boolean setLastNotif(Context context, String username, String lnotif) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        boolean res = db.setLastNotif(username, lnotif);
-        return res;
-    }
-
-    public void setPunt(Context context, String username, int punt) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        db.setPuntuacion(punt, username);
-    }
-
-    public void setPunt2(Context context, String username, int punt) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        db.setPuntuacion2(punt, username);
-    }
-
-    public boolean setFoto(Context context, String username, Uri image) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        boolean res = db.setFoto(username, image);
-        return res;
-    }
-
-    public boolean setPass(Context context, String username, String newP) {
-        DatabaseHandler db = new DatabaseHandler(context);
-        boolean res = db.setPass(username, newP);
-        return res;
-    }
-
-
-    public void logoutUser(Context context) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = preferences.edit();
-
-        editor.remove("userName");
-        editor.commit();
-    }*/
 }

@@ -43,6 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_VISITANT = "nomVisitant";
     private static final String KEY_PUNT_LOCAL = "golsLocal";
     private static final String KEY_PUNT_VISITANT = "golsVisitant";
+    private static final String KEY_GOLEJADORS = "golejadors";
 
     // Matches Table name
     private static final String TABLE_JUGADORS = "jugadors";
@@ -81,7 +82,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_LOCAL + " TEXT NOT NULL,"
                 + KEY_VISITANT + " TEXT NOT NULL,"
                 + KEY_PUNT_LOCAL + " INTEGER,"
-                + KEY_PUNT_VISITANT + " INTEGER" + ")";
+                + KEY_PUNT_VISITANT + " INTEGER,"
+                + KEY_GOLEJADORS + " STRING NOT NULL" + ")";
         db.execSQL(CREATE_EQUIPS_TABLE);
         db.execSQL(CREATE_JUGADORS_TABLE);
         db.execSQL(CREATE_PARTITS_TABLE);
@@ -147,20 +149,92 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean addPartit(String nomLocal, String nomVisitant, Integer golsLocal, Integer golsVisitant) {
+    public boolean addPartit(String nomLocal, String nomVisitant, ArrayList<Jugador> golejadors) {
         db = this.getWritableDatabase();
+        Integer golsLocal = 0;
+        Integer golsVisitant = 0;
 
         //Si existeix, retorna fals, i no es pot afegir
         if ((!checkExist(nomLocal)) || !checkExist(nomVisitant)) return false;
+        String csv = "";
+        if (golejadors.size() > 0) csv = golejadors.get(0).getName();
+        for (int i = 1; i < golejadors.size(); ++i){
+            csv += ",";
+            csv += golejadors.get(i).getName();
+            addGolJugador(golejadors.get(i).getName());
+            addGolEquip(golejadors.get(i).getEquip());
+            if (golejadors.get(i).getEquip().equals(nomLocal)) ++golsLocal;
+            else if (golejadors.get(i).getEquip().equals(nomVisitant)) ++golsVisitant;
+        }
 
         ContentValues values = new ContentValues();
         values.put(KEY_LOCAL, nomLocal); // Nom Local
         values.put(KEY_VISITANT, nomVisitant); // Nom Visitant
         values.put(KEY_PUNT_LOCAL, golsLocal); // Gols
         values.put(KEY_PUNT_VISITANT, golsVisitant); // Gols
+        values.put(KEY_GOLEJADORS,csv);
+
+        //Afegir guanyat/perdut/empatat i puntsLliga als dos equips
+        if (golsLocal > golsVisitant){
+            addPuntsEquip(nomLocal,3);
+            addGpeEquip(nomLocal,"Guanyat");
+            addGpeEquip(nomVisitant,"Perdut");
+        } else if (golsLocal < golsVisitant){
+            addPuntsEquip(nomVisitant,3);
+            addGpeEquip(nomLocal,"Perdut");
+            addGpeEquip(nomVisitant,"Guanyat");
+        } else {
+            addPuntsEquip(nomLocal,1);
+            addPuntsEquip(nomVisitant,1);
+            addGpeEquip(nomLocal,"Empatat");
+            addGpeEquip(nomVisitant,"Empatat");
+        }
 
         // Inserting Row
         db.insert(TABLE_PARTITS, null, values);
+        return true;
+    }
+
+    public Boolean addGolEquip(String name) {
+        db = this.getReadableDatabase();
+        String updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_GOL + " = "+ KEY_GOL + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+
+        db.execSQL(updateQuery);
+        return true;
+    }
+
+    public Boolean addGpeEquip(String name, String resultat) {
+        db = this.getReadableDatabase();
+        String updateQuery = "SELECT * FROM "+ TABLE_EQUIPS;
+        switch (resultat){
+            case "Guanyat":
+                updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_GUANYATS + " = "+ KEY_GUANYATS + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+                break;
+            case "Perdut":
+                updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_PERDUTS + " = "+ KEY_PERDUTS + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+                break;
+            case "Empatat":
+                updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_EMPATATS + " = "+ KEY_EMPATATS + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+                break;
+        }
+
+        db.execSQL(updateQuery);
+        return true;
+    }
+
+    public Boolean addPuntsEquip(String name, Integer punts) {
+        db = this.getReadableDatabase();
+        String updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_PUNT + " = "+ KEY_PUNT + "+" + punts + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+
+        db.execSQL(updateQuery);
+        return true;
+    }
+
+    public Boolean addGolJugador(String name) {
+        db = this.getReadableDatabase();
+        String updateQuery = "UPDATE "+ TABLE_JUGADORS +" SET " + KEY_GOL + " = "+ KEY_GOL + "+1 WHERE " + KEY_NAME + " = '" + name + "'";
+
+        db.execSQL(updateQuery);
         return true;
     }
 
@@ -405,13 +479,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Jornada j = new Jornada();
+                Jornada jornada = new Jornada();
                 for (int i = 1; i < 6; ++i) {
-                    Partit partit = new Partit(getEquip(cursor.getString(0)), getEquip(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3));
-                    j.setPartit(i, partit);
+                    ArrayList<Jugador> golejadors = new ArrayList<Jugador>();
+                    String[] csv = (cursor.getString(4)).split(",");
+                    for (int j = 0; j < csv.length; j++) {
+                        golejadors.add(getJugador(csv[j]));
+                    }
+                    Partit partit = new Partit(getEquip(cursor.getString(0)), getEquip(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3),golejadors);
+                    jornada.setPartit(i, partit);
                     if (!cursor.isLast()) cursor.moveToNext();
                 }
-                partitsList.add(j);
+                partitsList.add(jornada);
             } while (!cursor.isLast());
         }
         cursor.close();

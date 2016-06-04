@@ -158,7 +158,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if ((!checkExist(nomLocal)) || !checkExist(nomVisitant)) return false;
         String csv = "";
         if (golejadors.size() > 0) csv = golejadors.get(0).getName();
-        for (int i = 1; i < golejadors.size(); ++i){
+        for (int i = 0; i < golejadors.size(); i++){
             csv += ",";
             csv += golejadors.get(i).getName();
             addGolJugador(golejadors.get(i).getName());
@@ -196,7 +196,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean addGolEquip(String name) {
-        db = this.getReadableDatabase();
+        db = this.getWritableDatabase();
         String updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_GOL + " = "+ KEY_GOL + "+1 WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
 
         db.execSQL(updateQuery);
@@ -204,7 +204,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean addGpeEquip(String name, String resultat) {
-        db = this.getReadableDatabase();
+        db = this.getWritableDatabase();
         String updateQuery = "SELECT * FROM "+ TABLE_EQUIPS;
         switch (resultat){
             case "Guanyat":
@@ -223,7 +223,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean addPuntsEquip(String name, Integer punts) {
-        db = this.getReadableDatabase();
+        db = this.getWritableDatabase();
         String updateQuery = "UPDATE "+ TABLE_EQUIPS +" SET " + KEY_PUNT + " = "+ KEY_PUNT + "+" + punts + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
 
         db.execSQL(updateQuery);
@@ -231,7 +231,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean addGolJugador(String name) {
-        db = this.getReadableDatabase();
+        db = this.getWritableDatabase();
         String updateQuery = "UPDATE "+ TABLE_JUGADORS +" SET " + KEY_GOL + " = "+ KEY_GOL + "+1 WHERE " + KEY_NAME + " = '" + name + "'";
 
         db.execSQL(updateQuery);
@@ -308,7 +308,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Integer getPosicioEquip(String name) {
         db = this.getReadableDatabase();
-        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " ASC";
+        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " DESC";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         Integer res = 1;
@@ -356,7 +356,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Jugador getJugador(Integer posicio) {
         db = this.getReadableDatabase();
-        String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " ORDER BY " + KEY_GOL + " ASC";
+        String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " ORDER BY " + KEY_GOL + " DESC";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToPosition(posicio)) {
@@ -379,7 +379,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Equip getEquip(Integer posicio) {
         db = this.getReadableDatabase();
-        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " ASC";
+        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " DESC";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToPosition(posicio)) {
@@ -402,7 +402,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Equip> getEquips() {
         ArrayList<Equip> equipsList = new ArrayList<Equip>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " ASC";
+        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS + " ORDER BY " + KEY_PUNT + " DESC";
 
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -423,7 +423,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Jugador> getJugadors() {
         ArrayList<Jugador> jugadorsList = new ArrayList<Jugador>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " ORDER BY " + KEY_GOL + " ASC";
+        String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " ORDER BY " + KEY_GOL + " DESC";
 
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -447,7 +447,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Jugador> getJugadors(String nomEquip) {
         ArrayList<Jugador> jugadorsList = new ArrayList<Jugador>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " WHERE " + KEY_EQUIP + " = '" + nomEquip + "'" + " ORDER BY " + KEY_GOL + " ASC";
+        String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " WHERE " + KEY_EQUIP + " = '" + nomEquip + "'" + " ORDER BY " + KEY_GOL + " DESC";
 
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

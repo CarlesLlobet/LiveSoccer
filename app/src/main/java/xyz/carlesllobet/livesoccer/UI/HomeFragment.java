@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
                         startActivity(new Intent(context, NewEquipActivity.class));
                         break;
                     case 3:
-                        startActivity(new Intent(context, HelpActivity.class));
+                        startActivity(new Intent(context, NewJugadorActivity.class));
                         break;
                 }
             }

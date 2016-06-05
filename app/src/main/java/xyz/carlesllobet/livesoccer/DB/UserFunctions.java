@@ -86,6 +86,13 @@ public class UserFunctions {
         return res;
     }
 
+    public Boolean deleteJugador(Context context, String name){
+        DatabaseHandler db = new DatabaseHandler(context);
+        Boolean res = db.deleteJugador(name);
+        db.closeDB();
+        return res;
+    }
+
     public Jornada getJornada(Context context, Integer pos){
         DatabaseHandler db = new DatabaseHandler(context);
         Jornada jornada = db.getJornada(pos);
@@ -207,7 +214,7 @@ public class UserFunctions {
             addTeam(context, "Villareal", vi, "Villareal");
 
             //Afegir Jugadors Athletic
-            addJugador(context,"Iraizoz",00,"Athletic",true);
+            addJugador(context,"Iraizoz",01,"Athletic",true);
             addJugador(context,"Laporte",13,"Athletic",true);
             addJugador(context,"Iturraspe",12,"Athletic",true);
             addJugador(context,"Susaeta",11,"Athletic",true);
@@ -222,7 +229,7 @@ public class UserFunctions {
             addJugador(context,"Herrerín",29,"Athletic",false);
 
             //Afegir Jugadors Atlético
-            addJugador(context,"Bernabé",00,"Atlético",true);
+            addJugador(context,"Bernabé",01,"Atlético",true);
             addJugador(context,"Godín",13,"Atlético",true);
             addJugador(context,"Juanfran",12,"Atlético",true);
             addJugador(context,"Koke",11,"Atlético",true);
@@ -237,7 +244,7 @@ public class UserFunctions {
             addJugador(context,"Filipe L.",29,"Atlético",false);
 
             //Afegir Jugadors Barça
-            addJugador(context,"Valdes",00,"Barcelona",true);
+            addJugador(context,"Valdes",01,"Barcelona",true);
             addJugador(context,"Piqué",13,"Barcelona",true);
             addJugador(context,"Iniesta",12,"Barcelona",true);
             addJugador(context,"Messi",11,"Barcelona",true);
@@ -252,7 +259,7 @@ public class UserFunctions {
             addJugador(context,"Bartra",29,"Barcelona",false);
 
             //Afegir Jugadors Celta
-            addJugador(context,"Álvarez",00,"Celta",true);
+            addJugador(context,"Álvarez",01,"Celta",true);
             addJugador(context,"Gómez",13,"Celta",true);
             addJugador(context,"Nolito",12,"Celta",true);
             addJugador(context,"Guidetti",11,"Celta",true);
@@ -267,7 +274,7 @@ public class UserFunctions {
             addJugador(context,"Iago",29,"Celta",false);
 
             //Afegir Jugadors Palmas -
-            addJugador(context,"Lizoain",00,"Palmas",true);
+            addJugador(context,"Lizoain",01,"Palmas",true);
             addJugador(context,"Varas",13,"Palmas",true);
             addJugador(context,"Ángel",12,"Palmas",true);
             addJugador(context,"Lemos",11,"Palmas",true);
@@ -282,7 +289,7 @@ public class UserFunctions {
             addJugador(context,"Tana",29,"Palmas",false);
 
             //Afegir Jugadors Málaga -
-            addJugador(context,"Kameni",00,"Málaga",true);
+            addJugador(context,"Kameni",01,"Málaga",true);
             addJugador(context,"Albentosa",13,"Málaga",true);
             addJugador(context,"Filipenko",12,"Málaga",true);
             addJugador(context,"Cifuentes",11,"Málaga",true);
@@ -297,7 +304,7 @@ public class UserFunctions {
             addJugador(context,"Hachim",29,"Málaga",false);
 
             //Afegir Jugadors R.Madrid -
-            addJugador(context,"K.Navas",00,"R.Madrid",true);
+            addJugador(context,"K.Navas",01,"R.Madrid",true);
             addJugador(context,"Arbeloa",13,"R.Madrid",true);
             addJugador(context,"Carbajal",12,"R.Madrid",true);
             addJugador(context,"Ramos",11,"R.Madrid",true);
@@ -312,7 +319,7 @@ public class UserFunctions {
             addJugador(context,"Llorente",29,"R.Madrid",false);
 
             //Afegir Jugadors Sevilla -
-            addJugador(context,"Beto",00,"Sevilla",true);
+            addJugador(context,"Beto",01,"Sevilla",true);
             addJugador(context,"Andreolli",13,"Sevilla",true);
             addJugador(context,"Coke",12,"Sevilla",true);
             addJugador(context,"Gameiro",11,"Sevilla",true);
@@ -327,7 +334,7 @@ public class UserFunctions {
             addJugador(context,"Escudero",29,"Sevilla",false);
 
             //Afegir Jugadors Valencia -
-            addJugador(context,"Alves",00,"Valencia",true);
+            addJugador(context,"Alves",01,"Valencia",true);
             addJugador(context,"Gil",13,"Valencia",true);
             addJugador(context,"Bakkali",12,"Valencia",true);
             addJugador(context,"Salvador",11,"Valencia",true);
@@ -342,7 +349,7 @@ public class UserFunctions {
             addJugador(context,"Mustafi",29,"Valencia",false);
 
             //Afegir Jugadors Villareal -
-            addJugador(context,"Asenjo",00,"Villareal",true);
+            addJugador(context,"Asenjo",01,"Villareal",true);
             addJugador(context,"Bailly",13,"Villareal",true);
             addJugador(context,"Íñiguez",12,"Villareal",true);
             addJugador(context,"Rukavina",11,"Villareal",true);

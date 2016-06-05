@@ -48,7 +48,7 @@ public class EquipActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equip);
 
-        setTitle(R.string.tituloDetalles);
+        setTitle("Nou Equip");
 
         uf = new UserFunctions();
 

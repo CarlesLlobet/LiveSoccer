@@ -1,8 +1,11 @@
 package xyz.carlesllobet.livesoccer.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +30,8 @@ public class JugadorActivity extends AppCompatActivity {
 
     private ImageView escut;
 
+    private Button delete;
+
     private Jugador j;
 
     @Override
@@ -38,7 +43,7 @@ public class JugadorActivity extends AppCompatActivity {
 
         uf = new UserFunctions();
 
-        Integer pos = getIntent().getExtras().getInt("jugador");
+        final Integer pos = getIntent().getExtras().getInt("jugador");
         if (pos != null) {
             j = uf.getJugador(getApplicationContext(),pos);
         }
@@ -48,6 +53,8 @@ public class JugadorActivity extends AppCompatActivity {
         equip = (TextView)findViewById(R.id.equip);
         dorsal = (TextView)findViewById(R.id.dorsal);
 
+        delete = (Button) findViewById(R.id.btnDeleteJug);
+
         escut = (ImageView)findViewById(R.id.pic);
 
         nom.setText(j.getName());
@@ -56,6 +63,15 @@ public class JugadorActivity extends AppCompatActivity {
         gols.setText(j.getGols().toString());
 
         escut.setImageURI(uf.getEquip(getApplicationContext(),j.getEquip()).getEscut());
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), NewJugadorActivity.class);
+                i.putExtra("equip", pos);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

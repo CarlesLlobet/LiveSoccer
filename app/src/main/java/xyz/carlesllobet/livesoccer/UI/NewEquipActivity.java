@@ -308,6 +308,7 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
                     uf.addJugador(getApplicationContext(), name10.getText().toString(), Integer.valueOf(dorsal10.getText().toString()), entra.getName(), titular10.isChecked());
                     uf.addJugador(getApplicationContext(), name11.getText().toString(), Integer.valueOf(dorsal11.getText().toString()), entra.getName(), titular11.isChecked());
                     uf.addJugador(getApplicationContext(), name12.getText().toString(), Integer.valueOf(dorsal12.getText().toString()), entra.getName(), titular12.isChecked());
+                    startActivity(new Intent(NewEquipActivity.this,HomeActivity.class));
                 }
                 break;
         }
@@ -328,6 +329,7 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
                     pic.setImageURI(imgUri);
                     //Guardar la foto al equip
                     entra.setEscut(imgUri);
+                    //Toast.makeText(NewEquipActivity.this,"La imatge pesa massa",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case 1:
@@ -342,6 +344,7 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
                     pic.setImageURI(imgUri);
                     //Guardar la foto al equip
                     entra.setEscut(imgUri);
+                    //Toast.makeText(NewEquipActivity.this,"La imatge pesa massa",Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -429,12 +432,14 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
         noms.add(name12);
 
         for (int i = 0; i < 12; i++){
-            for (int j = i; j < 12; j++){
+            for (int j = i+1; j < 12; j++){
                 if (dorsals.get(i).getText().toString().equals(dorsals.get(j).getText().toString())){
+                    Log.d("Dorsals:", i+":"+j);
                     Toast.makeText(NewEquipActivity.this, "Dos jugadors no poden tenir el mateix dorsal", Toast.LENGTH_SHORT).show();
                     return false;
                 }
                 if (noms.get(i).getText().toString().equals(noms.get(j).getText().toString())){
+                    Log.d("Noms:", i+":"+j);
                     Toast.makeText(NewEquipActivity.this, "Dos jugadors no poden tenir el mateix nom", Toast.LENGTH_SHORT).show();
                     return false;
                 }

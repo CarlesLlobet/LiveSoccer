@@ -24,36 +24,36 @@
             android:textSize="18dp"
             android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/escut"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_vertical"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_valencia" />
-
-        <Spinner
-            android:id="@+id/team"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/spinner_jugadors"
-            android:spinnerMode="dropdown"
-            android:textColor="@android:color/white"
-            app:layout_anchorGravity="top"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/escut"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_valencia" />
+
+            <Spinner
+                android:id="@+id/team"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/spinner_jugadors"
+                android:gravity="center"
+                android:spinnerMode="dropdown"
+                android:textColor="@android:color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_anchorGravity="top" />
         </LinearLayout>
 
         <TextView

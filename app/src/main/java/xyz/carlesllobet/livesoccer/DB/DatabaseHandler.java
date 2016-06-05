@@ -312,19 +312,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Boolean deleteEquip(String name) {
         db = this.getWritableDatabase();
-        String deleteQuery = "DELETE  * FROM " + TABLE_EQUIPS + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+        String deleteQuery = "DELETE FROM " + TABLE_EQUIPS + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
         db.execSQL(deleteQuery);
 
         ArrayList<Jugador> plantilla = getJugadors(name);
         for (int i = 0; i < plantilla.size(); i++){
             deleteJugador(plantilla.get(i).getName());
         }
+
+        deletePartits(name);
         return true;
     }
 
     public Boolean deleteJugador(String name) {
         db = this.getWritableDatabase();
-        String deleteQuery = "DELETE  * FROM " + TABLE_JUGADORS + " WHERE " + KEY_NAME + " = '" + name + "'";
+        String deleteQuery = "DELETE FROM " + TABLE_JUGADORS + " WHERE " + KEY_NAME + " = '" + name + "'";
+        db.execSQL(deleteQuery);
+        return true;
+    }
+
+    public Boolean deletePartits(String equip){
+        db = this.getWritableDatabase();
+        String deleteQuery = "DELETE FROM " + TABLE_PARTITS + " WHERE " + KEY_LOCAL + " = '" + equip + "' OR " + KEY_VISITANT+ " = '" + equip + "'";
         db.execSQL(deleteQuery);
         return true;
     }

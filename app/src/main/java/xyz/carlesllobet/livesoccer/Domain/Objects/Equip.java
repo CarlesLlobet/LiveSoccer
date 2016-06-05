@@ -25,9 +25,10 @@ public class Equip {
     }
 
     // constructor
-    public Equip(String name, Uri e) {
+    public Equip(String name, Uri e, String c) {
         this.nom = name;
         this.escut = e;
+        this.ciutat = c;
         this.puntsLliga = 0;
         this.gols = 0;
         this.guanyats = 0;
@@ -35,9 +36,10 @@ public class Equip {
         this.empatats = 0;
     }
 
-    public Equip(String name, Uri e, Integer p, Integer g,Integer pg,Integer pp,Integer pe) {
+    public Equip(String name, Uri e, String c, Integer p, Integer g,Integer pg,Integer pp,Integer pe) {
         this.nom = name;
         this.escut = e;
+        this.ciutat = c;
         this.puntsLliga = p;
         this.gols = g;
         this.guanyats = pg;
@@ -107,4 +109,8 @@ public class Equip {
     public Uri getEscut() {return this.escut;}
 
     public void setEscut(Uri e) {this.escut = e;}
+
+    public String getCiutat() {return this.ciutat;}
+
+    public void setCiutat(String c) {this.ciutat = c;}
 }

@@ -15,7 +15,7 @@
     <string name="closeDrawer">Close menu</string>
     <string name="deleteUser">Delete</string>
     <string name="deleteUserText">Are you sure deleting the user:</string>
-    <string name="dialog1">New profile picture</string>
+    <string name="dialog1">New team badge</string>
     <string name="error1">The current password is not correct!</string>
     <string name="error2">Passwords do not match!</string>
     <string name="error3">Incorrect values. Please try again with another username or password</string>

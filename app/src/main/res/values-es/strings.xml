@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">LiveSoccer</string>
     <string name="equip">Equipo:</string>
+    <string name="dialog1">Escudo para el nuevo equipo</string>
 </resources>

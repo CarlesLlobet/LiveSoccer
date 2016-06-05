@@ -1,8 +1,11 @@
 package xyz.carlesllobet.livesoccer.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ public class EquipActivity extends AppCompatActivity {
     private UserFunctions uf;
 
     private TextView nom;
+    private TextView ciutat;
     private TextView punt;
     private TextView pg;
     private TextView pp;
@@ -28,6 +32,8 @@ public class EquipActivity extends AppCompatActivity {
     private TextView gols;
 
     private ImageView escut;
+
+    private Button delete;
 
     private Equip e;
 
@@ -46,12 +52,13 @@ public class EquipActivity extends AppCompatActivity {
 
         uf = new UserFunctions();
 
-        Integer pos = getIntent().getExtras().getInt("equip");
+        final Integer pos = getIntent().getExtras().getInt("equip");
         if (pos != null) {
             e = uf.getEquip(getApplicationContext(),pos);
         }
 
         nom = (TextView)findViewById(R.id.equip);
+        ciutat = (TextView)findViewById(R.id.city);
         punt = (TextView)findViewById(R.id.punt);
         pg = (TextView)findViewById(R.id.pg);
         pp = (TextView)findViewById(R.id.pp);
@@ -60,7 +67,10 @@ public class EquipActivity extends AppCompatActivity {
 
         escut = (ImageView)findViewById(R.id.pic);
 
+        delete = (Button) findViewById(R.id.btnDelete);
+
         nom.setText(e.getName());
+        ciutat.setText(e.getCiutat());
         punt.setText(e.getPunt().toString());
         pg.setText(e.getGuanyats().toString());
         pp.setText(e.getPerduts().toString());
@@ -150,6 +160,15 @@ public class EquipActivity extends AppCompatActivity {
         golsJug10.setText(plantilla.get(9).getGols().toString());
         golsJug11.setText(plantilla.get(10).getGols().toString());
         golsJug12.setText(plantilla.get(11).getGols().toString());
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), NewEquipActivity.class);
+                i.putExtra("equip", pos);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

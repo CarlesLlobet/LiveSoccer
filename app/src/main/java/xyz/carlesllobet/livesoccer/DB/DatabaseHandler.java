@@ -30,6 +30,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Teams Table Columns names
     private static final String KEY_NOM_EQUIP = "nomEquip";
     private static final String KEY_ESCUT = "escut";
+    private static final String KEY_CIUTAT = "ciutat";
     private static final String KEY_PUNT = "punts_lliga";
     private static final String KEY_GUANYATS = "guanyats";
     private static final String KEY_PERDUTS = "perduts";
@@ -67,6 +68,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_EQUIPS_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_EQUIPS + "("
                 + KEY_NOM_EQUIP + " TEXT NOT NULL,"
                 + KEY_ESCUT + " STRING,"
+                + KEY_CIUTAT + " STRING,"
                 + KEY_PUNT + " INTEGER,"
                 + KEY_GOL + " INTEGER,"
                 + KEY_GUANYATS + " INTEGER,"
@@ -104,7 +106,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      */
-    public boolean addTeam(String nombre, Uri escut) {
+    public boolean addTeam(String nombre, Uri escut, String ciutat) {
         db = this.getWritableDatabase();
         String stringUri = escut.toString();
 
@@ -116,6 +118,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NOM_EQUIP, nombre); // Name
         values.put(KEY_ESCUT, stringUri); // Photo
+        values.put(KEY_CIUTAT, ciutat); // Photo
         values.put(KEY_PUNT, 0); // Puntuation
         values.put(KEY_GOL, 0); //Gols
         values.put(KEY_GUANYATS, 0); //Partits guanyats
@@ -293,17 +296,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Equip res = new Equip();
             res.setName(cursor.getString(0));
             res.setEscut(Uri.parse(cursor.getString(1)));
-            res.setPunt(cursor.getInt(2));
-            res.setGols(cursor.getInt(3));
-            res.setGuanyats(cursor.getInt(4));
-            res.setPerduts(cursor.getInt(5));
-            res.setEmpatats(cursor.getInt(6));
+            res.setCiutat(cursor.getString(2));
+            res.setPunt(cursor.getInt(3));
+            res.setGols(cursor.getInt(4));
+            res.setGuanyats(cursor.getInt(5));
+            res.setPerduts(cursor.getInt(6));
+            res.setEmpatats(cursor.getInt(7));
             cursor.close();
             return res;
         } else {
             cursor.close();
             return null;
         }
+    }
+
+    public Boolean deleteEquip(String name) {
+        db = this.getWritableDatabase();
+        String deleteQuery = "DELETE  * FROM " + TABLE_EQUIPS + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+        db.execSQL(deleteQuery);
+
+        ArrayList<Jugador> plantilla = getJugadors(name);
+        for (int i = 0; i < plantilla.size(); i++){
+            deleteJugador(plantilla.get(i).getName());
+        }
+        return true;
+    }
+
+    public Boolean deleteJugador(String name) {
+        db = this.getWritableDatabase();
+        String deleteQuery = "DELETE  * FROM " + TABLE_JUGADORS + " WHERE " + KEY_NAME + " = '" + name + "'";
+        db.execSQL(deleteQuery);
+        return true;
     }
 
     public Integer getPosicioEquip(String name) {
@@ -386,11 +409,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Equip res = new Equip();
             res.setName(cursor.getString(0));
             res.setEscut(Uri.parse(cursor.getString(1)));
-            res.setPunt(cursor.getInt(2));
-            res.setGols(cursor.getInt(3));
-            res.setGuanyats(cursor.getInt(4));
-            res.setPerduts(cursor.getInt(5));
-            res.setEmpatats(cursor.getInt(6));
+            res.setCiutat(cursor.getString(2));
+            res.setPunt(cursor.getInt(3));
+            res.setGols(cursor.getInt(4));
+            res.setGuanyats(cursor.getInt(5));
+            res.setPerduts(cursor.getInt(6));
+            res.setEmpatats(cursor.getInt(7));
             cursor.close();
             return res;
         } else {
@@ -410,7 +434,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Equip equip = new Equip(cursor.getString(0), Uri.parse(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(5), cursor.getInt(6));
+                Equip equip = new Equip(cursor.getString(0), Uri.parse(cursor.getString(1)), cursor.getString(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(5), cursor.getInt(6), cursor.getInt(7));
                 // Adding person to list
                 equipsList.add(equip);
             } while (cursor.moveToNext());

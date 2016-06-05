@@ -79,6 +79,13 @@ public class UserFunctions {
         return equip;
     }
 
+    public Boolean deleteEquip(Context context, String name){
+        DatabaseHandler db = new DatabaseHandler(context);
+        Boolean res = db.deleteEquip(name);
+        db.closeDB();
+        return res;
+    }
+
     public Jornada getJornada(Context context, Integer pos){
         DatabaseHandler db = new DatabaseHandler(context);
         Jornada jornada = db.getJornada(pos);
@@ -93,9 +100,9 @@ public class UserFunctions {
         return res;
     }
 
-    public boolean addTeam(Context context, String nombre, Uri escut){
+    public boolean addTeam(Context context, String nombre, Uri escut, String ciutat){
         DatabaseHandler db = new DatabaseHandler(context);
-        boolean res = db.addTeam(nombre, escut);
+        boolean res = db.addTeam(nombre, escut, ciutat);
         db.closeDB();
         return res;
     }
@@ -188,16 +195,16 @@ public class UserFunctions {
             Uri va = Uri.parse("android.resource://xyz.carlesllobet.livesoccer/" + R.mipmap.ic_valencia);
             Uri vi = Uri.parse("android.resource://xyz.carlesllobet.livesoccer/" + R.mipmap.ic_villareal);
 
-            addTeam(context, "Athletic", ath);
-            addTeam(context, "Atlético", at);
-            addTeam(context, "Barcelona", bar);
-            addTeam(context, "Celta", cel);
-            addTeam(context, "Palmas", pal);
-            addTeam(context, "Málaga", mal);
-            addTeam(context, "R.Madrid", re_ma);
-            addTeam(context, "Sevilla", sev);
-            addTeam(context, "Valencia", va);
-            addTeam(context, "Villareal", vi);
+            addTeam(context, "Athletic", ath, "Bilbao");
+            addTeam(context, "Atlético", at, "Madrid");
+            addTeam(context, "Barcelona", bar, "Barcelona");
+            addTeam(context, "Celta", cel, "Vigo");
+            addTeam(context, "Palmas", pal, "Las Palmas");
+            addTeam(context, "Málaga", mal, "Málaga");
+            addTeam(context, "R.Madrid", re_ma, "Madrid");
+            addTeam(context, "Sevilla", sev, "Sevilla");
+            addTeam(context, "Valencia", va, "Valencia");
+            addTeam(context, "Villareal", vi, "Villareal");
 
             //Afegir Jugadors Athletic
             addJugador(context,"Iraizoz",00,"Athletic",true);

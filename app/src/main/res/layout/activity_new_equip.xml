@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,6 +12,64 @@
         android:orientation="vertical"
         android:padding="25dp"
         tools:context=".UI.HomeActivity">
+
+        <TextView
+            android:id="@+id/partit"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Equip de baixa"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/escut"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_valencia" />
+
+        <Spinner
+            android:id="@+id/team"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/spinner_jugadors"
+            android:spinnerMode="dropdown"
+            android:textColor="@android:color/white"
+            app:layout_anchorGravity="top"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/gols"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:text="Nou equip"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
 
         <LinearLayout
@@ -24,16 +83,19 @@
                 android:layout_height="100dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:padding="10dp"
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_soccer_white_24dp" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_camera_white_24dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/equip"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="nom equip"
+                android:hint="Nom equip"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
@@ -52,154 +114,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:gravity="center_vertical"
                 android:text="Ciutat:"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@android:color/white" />
 
-            <TextView
+            <EditText
                 android:id="@+id/city"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="clip_vertical|center_horizontal"
-                android:text="-"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/punt"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/punt"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="clip_vertical|center_horizontal"
-                android:text="-"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <TextView
-                android:id="@+id/txtView4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/pg"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/pg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="-"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/pp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/pp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="clip_vertical|center_horizontal"
-                android:text="-"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/pe"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/pe"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="clip_vertical|center_horizontal"
-                android:text="-"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/gols"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/gols"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="clip_vertical|center_horizontal"
-                android:text="-"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@android:color/white" />
 
@@ -228,15 +153,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal1"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="30"
+                android:hint="01"
+                android:inputType="number"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -251,27 +178,34 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name1"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
                 android:layout_gravity="center_vertical"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:hint="Jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug1"
+            <CheckedTextView
+                android:id="@+id/titular1"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:checked="true"
+                android:textColor="@android:color/white"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -281,15 +215,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal2"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
+                android:inputType="number"
                 android:gravity="center"
-                android:text="30"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -304,27 +240,35 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name2"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:inputType="textPersonName"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:hint="Jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug2"
+
+            <CheckedTextView
+                android:id="@+id/titular2"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:checked="true"
+                android:textColor="@android:color/white"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -334,15 +278,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal3"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="30"
+                android:inputType="number"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -357,27 +303,34 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name3"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:inputType="textPersonName"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:gravity="center"
-                android:text="Jugador"
+                android:hint="Jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug3"
+            <CheckedTextView
+                android:id="@+id/titular3"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:checked="true"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -387,15 +340,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal4"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="30"
+                android:inputType="number"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -410,27 +365,34 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name4"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:inputType="textPersonName"
+                android:hint="Jugador"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug4"
+            <CheckedTextView
+                android:id="@+id/titular4"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:checked="true"
+                android:textColor="@android:color/white"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -440,15 +402,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal5"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
+                android:inputType="number"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:gravity="center"
-                android:text="30"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -463,27 +427,34 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name5"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:inputType="textPersonName"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:gravity="center"
-                android:text="Jugador"
+                android:hint="Jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug5"
+            <CheckedTextView
+                android:id="@+id/titular5"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:checked="true"
+                android:textColor="@android:color/white"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -493,15 +464,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal6"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
+                android:textColorHint="@android:color/tertiary_text_light"
+                android:inputType="number"
                 android:gravity="center"
-                android:text="30"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -516,27 +489,33 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name6"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:textColorHint="@android:color/tertiary_text_light"
+                android:inputType="textPersonName"
+                android:hint="Jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug6"
+            <CheckedTextView
+                android:id="@+id/titular6"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:textColor="@android:color/white"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -546,15 +525,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal7"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
+                android:inputType="number"
                 android:gravity="center"
-                android:text="30"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -569,27 +550,33 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name7"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:inputType="textPersonName"
+                android:textColorHint="@android:color/tertiary_text_light"
+                android:hint="Jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug7"
+            <CheckedTextView
+                android:id="@+id/titular7"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -599,15 +586,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal8"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
+                android:inputType="number"
                 android:gravity="center"
-                android:text="30"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -622,27 +611,33 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name8"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:textColorHint="@android:color/tertiary_text_light"
+                android:inputType="textPersonName"
+                android:hint="Jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug8"
+            <CheckedTextView
+                android:id="@+id/titular8"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -652,15 +647,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal9"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
+                android:inputType="number"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:gravity="center"
-                android:text="30"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -675,27 +672,33 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name9"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:inputType="textPersonName"
+                android:textColorHint="@android:color/tertiary_text_light"
+                android:hint="Jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug9"
+            <CheckedTextView
+                android:id="@+id/titular9"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -705,15 +708,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal10"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:gravity="center"
-                android:text="30"
+                android:inputType="number"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -728,27 +733,33 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name10"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:inputType="textPersonName"
+                android:hint="Jugador"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug10"
+            <CheckedTextView
+                android:id="@+id/titular10"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -758,15 +769,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal11"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
+                android:inputType="number"
                 android:gravity="center"
-                android:text="30"
+                android:textColorHint="@android:color/tertiary_text_light"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -781,27 +794,33 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name11"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:inputType="textPersonName"
+                android:hint="Jugador"
                 android:textColor="@color/text"
+                android:textColorHint="@android:color/tertiary_text_light"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug11"
+            <CheckedTextView
+                android:id="@+id/titular11"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
@@ -811,15 +830,17 @@
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <TextView
+            <EditText
                 android:id="@+id/dorsal12"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="30"
+                android:inputType="number"
+                android:textColorHint="@android:color/tertiary_text_light"
+                android:hint="01"
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
@@ -834,40 +855,45 @@
                 android:textColor="@color/text"
                 android:textSize="18dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name12"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Jugador"
+                android:inputType="textPersonName"
+                android:textColorHint="@android:color/tertiary_text_light"
+                android:hint="Jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/golsJug12"
+            <CheckedTextView
+                android:id="@+id/titular12"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_weight="20"
-                android:gravity="center"
-                android:text="300"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:layout_height="wrap_content"
+                android:text="Titular"
+                android:textSize="16dp"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:textColor="@android:color/white"
+                android:layout_weight="10"
+                android:layout_marginLeft="40dp"
+                android:textAlignment="center"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"/>
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnDelete"
+            android:id="@+id/afegirEquip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp"
             android:background="@color/colorAccent"
-            android:paddingRight="15dp"
-            android:drawableLeft="@mipmap/ic_delete"
-            android:text="@string/btnDelete"
-            android:textAllCaps="false" />
+            android:text="Afegir"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </ScrollView>

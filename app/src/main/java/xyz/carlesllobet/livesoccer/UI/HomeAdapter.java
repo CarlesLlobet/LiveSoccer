@@ -186,7 +186,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.AdapterViewHol
                 case 3:
                     return jugadors.size();
                 default:
-                    return jornades.size();
+                    return 0;
             }
         }
 

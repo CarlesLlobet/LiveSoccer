@@ -92,8 +92,8 @@ public class JornadaActivity extends AppCompatActivity implements View.OnClickLi
 
         nomLocal.setText(p1.getLocal().getName());
         nomVisitant.setText(p1.getVisitant().getName());
-        golsLocal.setText(p1.getLocal().getGols().toString());
-        golsVisitant.setText(p1.getVisitant().getGols().toString());
+        golsLocal.setText(p1.getPuntLocal().toString());
+        golsVisitant.setText(p1.getPuntVisitant().toString());
         escutLocal.setImageURI(p1.getLocal().getEscut());
         escutVisitant.setImageURI(p1.getVisitant().getEscut());
     }
@@ -113,8 +113,8 @@ public class JornadaActivity extends AppCompatActivity implements View.OnClickLi
 
                         nomLocal.setText(p1.getLocal().getName());
                         nomVisitant.setText(p1.getVisitant().getName());
-                        golsLocal.setText(p1.getLocal().getGols().toString());
-                        golsVisitant.setText(p1.getVisitant().getGols().toString());
+                        golsLocal.setText(p1.getPuntLocal().toString());
+                        golsVisitant.setText(p1.getPuntVisitant().toString());
                         escutLocal.setImageURI(p1.getLocal().getEscut());
                         escutVisitant.setImageURI(p1.getVisitant().getEscut());
                         break;
@@ -126,8 +126,8 @@ public class JornadaActivity extends AppCompatActivity implements View.OnClickLi
 
                         nomLocal.setText(p2.getLocal().getName());
                         nomVisitant.setText(p2.getVisitant().getName());
-                        golsLocal.setText(p2.getLocal().getGols().toString());
-                        golsVisitant.setText(p2.getVisitant().getGols().toString());
+                        golsLocal.setText(p2.getPuntLocal().toString());
+                        golsVisitant.setText(p2.getPuntVisitant().toString());
                         escutLocal.setImageURI(p2.getLocal().getEscut());
                         escutVisitant.setImageURI(p2.getVisitant().getEscut());
                         break;
@@ -139,8 +139,8 @@ public class JornadaActivity extends AppCompatActivity implements View.OnClickLi
 
                         nomLocal.setText(p3.getLocal().getName());
                         nomVisitant.setText(p3.getVisitant().getName());
-                        golsLocal.setText(p3.getLocal().getGols().toString());
-                        golsVisitant.setText(p3.getVisitant().getGols().toString());
+                        golsLocal.setText(p3.getPuntLocal().toString());
+                        golsVisitant.setText(p3.getPuntVisitant().toString());
                         escutLocal.setImageURI(p3.getLocal().getEscut());
                         escutVisitant.setImageURI(p3.getVisitant().getEscut());
                         break;
@@ -155,8 +155,8 @@ public class JornadaActivity extends AppCompatActivity implements View.OnClickLi
 
                         nomLocal.setText(p4.getLocal().getName());
                         nomVisitant.setText(p4.getVisitant().getName());
-                        golsLocal.setText(p4.getLocal().getGols().toString());
-                        golsVisitant.setText(p4.getVisitant().getGols().toString());
+                        golsLocal.setText(p4.getPuntLocal().toString());
+                        golsVisitant.setText(p4.getPuntVisitant().toString());
                         escutLocal.setImageURI(p4.getLocal().getEscut());
                         escutVisitant.setImageURI(p4.getVisitant().getEscut());
                         break;
@@ -175,8 +175,8 @@ public class JornadaActivity extends AppCompatActivity implements View.OnClickLi
 
                         nomLocal.setText(p2.getLocal().getName());
                         nomVisitant.setText(p2.getVisitant().getName());
-                        golsLocal.setText(p2.getLocal().getGols().toString());
-                        golsVisitant.setText(p2.getVisitant().getGols().toString());
+                        golsLocal.setText(p2.getPuntLocal().toString());
+                        golsVisitant.setText(p2.getPuntVisitant().toString());
                         escutLocal.setImageURI(p2.getLocal().getEscut());
                         escutVisitant.setImageURI(p2.getVisitant().getEscut());
                         break;
@@ -188,8 +188,8 @@ public class JornadaActivity extends AppCompatActivity implements View.OnClickLi
 
                         nomLocal.setText(p3.getLocal().getName());
                         nomVisitant.setText(p3.getVisitant().getName());
-                        golsLocal.setText(p3.getLocal().getGols().toString());
-                        golsVisitant.setText(p3.getVisitant().getGols().toString());
+                        golsLocal.setText(p3.getPuntLocal().toString());
+                        golsVisitant.setText(p3.getPuntVisitant().toString());
                         escutLocal.setImageURI(p3.getLocal().getEscut());
                         escutVisitant.setImageURI(p3.getVisitant().getEscut());
                         break;
@@ -201,8 +201,8 @@ public class JornadaActivity extends AppCompatActivity implements View.OnClickLi
 
                         nomLocal.setText(p4.getLocal().getName());
                         nomVisitant.setText(p4.getVisitant().getName());
-                        golsLocal.setText(p4.getLocal().getGols().toString());
-                        golsVisitant.setText(p4.getVisitant().getGols().toString());
+                        golsLocal.setText(p4.getPuntLocal().toString());
+                        golsVisitant.setText(p4.getPuntVisitant().toString());
                         escutLocal.setImageURI(p4.getLocal().getEscut());
                         escutVisitant.setImageURI(p4.getVisitant().getEscut());
                         break;
@@ -216,8 +216,8 @@ public class JornadaActivity extends AppCompatActivity implements View.OnClickLi
 
                         nomLocal.setText(p5.getLocal().getName());
                         nomVisitant.setText(p5.getVisitant().getName());
-                        golsLocal.setText(p5.getLocal().getGols().toString());
-                        golsVisitant.setText(p5.getVisitant().getGols().toString());
+                        golsLocal.setText(p5.getPuntLocal().toString());
+                        golsVisitant.setText(p5.getPuntVisitant().toString());
                         escutLocal.setImageURI(p5.getLocal().getEscut());
                         escutVisitant.setImageURI(p5.getVisitant().getEscut());
                         break;

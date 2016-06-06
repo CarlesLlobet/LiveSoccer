@@ -26,6 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Teams Table name
     private static final String TABLE_EQUIPS = "equips";
+    private static final String TABLE_EQUIPS_ELIMINATS = "equips_eliminats";
 
     // Teams Table Columns names
     private static final String KEY_NOM_EQUIP = "nomEquip";
@@ -94,10 +95,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_NAME + " TEXT NOT NULL,"
                 + KEY_DORSAL + " INTEGER NOT NULL,"
                 + KEY_EQUIP + " STRING NOT NULL" + ")";
+        String CREATE_EQUIPS_ELIMINATS_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_EQUIPS_ELIMINATS + "("
+                + KEY_NOM_EQUIP + " TEXT NOT NULL,"
+                + KEY_ESCUT + " STRING" + ")";
         db.execSQL(CREATE_EQUIPS_TABLE);
         db.execSQL(CREATE_JUGADORS_TABLE);
         db.execSQL(CREATE_PARTITS_TABLE);
         db.execSQL(CREATE_GOLEJADORS_TABLE);
+        db.execSQL(CREATE_EQUIPS_ELIMINATS_TABLE);
     }
 
     // Upgrading database
@@ -137,6 +142,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_EQUIPS, null, values);
+        return true;
+    }
+
+    public boolean addEquipEliminat(String nombre, Uri escut) {
+        db = this.getWritableDatabase();
+        String stringUri = escut.toString();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NOM_EQUIP, nombre); // Name
+        values.put(KEY_ESCUT, stringUri); // Photo
+
+        // Inserting Row
+        db.insert(TABLE_EQUIPS_ELIMINATS, null, values);
         return true;
     }
 
@@ -329,11 +347,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return res;
         } else {
             cursor.close();
+            Equip ee = getEquipEliminat(name);
+            if (ee!=null) return ee;
+            else return null;
+        }
+    }
+
+    public Equip getEquipEliminat(String name) {
+        db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPS_ELIMINATS + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            Equip res = new Equip();
+            res.setName(cursor.getString(0));
+            res.setEscut(Uri.parse(cursor.getString(1)));
+            cursor.close();
+            return res;
+        } else {
+            cursor.close();
             return null;
         }
     }
 
     public Boolean deleteEquip(String name) {
+        Equip aux = getEquip(name);
+        addEquipEliminat(aux.getName(),aux.getEscut());
         db = this.getWritableDatabase();
         String deleteQuery = "DELETE FROM " + TABLE_EQUIPS + " WHERE " + KEY_NOM_EQUIP + " = '" + name + "'";
         db.execSQL(deleteQuery);
@@ -342,8 +381,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         for (int i = 0; i < plantilla.size(); i++){
             deleteJugador(plantilla.get(i).getName());
         }
-
-        deletePartits(name);
         return true;
     }
 
@@ -352,13 +389,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         addJugadorEliminat(j.getName(),j.getDorsal(),j.getEquip());
         db = this.getWritableDatabase();
         String deleteQuery = "DELETE FROM " + TABLE_JUGADORS + " WHERE " + KEY_NAME + " = '" + name + "'";
-        db.execSQL(deleteQuery);
-        return true;
-    }
-
-    public Boolean deletePartits(String equip){
-        db = this.getWritableDatabase();
-        String deleteQuery = "DELETE FROM " + TABLE_PARTITS + " WHERE " + KEY_LOCAL + " = '" + equip + "' OR " + KEY_VISITANT+ " = '" + equip + "'";
         db.execSQL(deleteQuery);
         return true;
     }
@@ -561,7 +591,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     }
                     else golejadors.add(getJugador(csv[j]));
                 }
-                Partit res = new Partit(getEquip(cursor.getString(0)), getEquip(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3), golejadors);
+                Equip local = getEquip(cursor.getString(0));
+                Equip visitant = getEquip(cursor.getString(1));
+                if (local == null) local = getEquipEliminat(cursor.getString(0));
+                if (visitant == null) visitant = getEquipEliminat(cursor.getString(1));
+                Partit res = new Partit(local,visitant, cursor.getInt(2), cursor.getInt(3), golejadors);
                 jornada.setPartit(i, res);
                 if (!cursor.isLast()) cursor.moveToNext();
             }
@@ -591,7 +625,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     for (int j = 0; j < csv.length; j++) {
                         golejadors.add(getJugador(csv[j]));
                     }
-                    Partit partit = new Partit(getEquip(cursor.getString(0)), getEquip(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3), golejadors);
+                    Equip local = getEquip(cursor.getString(0));
+                    Equip visitant = getEquip(cursor.getString(1));
+                    if (local == null) local = getEquipEliminat(cursor.getString(0));
+                    if (visitant == null) visitant = getEquipEliminat(cursor.getString(1));
+                    Partit partit = new Partit(local,visitant, cursor.getInt(2), cursor.getInt(3), golejadors);
                     jornada.setPartit(i, partit);
                     if (!cursor.isLast()) cursor.moveToNext();
                 }

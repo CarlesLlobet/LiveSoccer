@@ -7,11 +7,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -30,7 +33,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import xyz.carlesllobet.livesoccer.DB.UserFunctions;
 import xyz.carlesllobet.livesoccer.Domain.EquipSpinnerAdapter;
@@ -58,8 +66,8 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
     private Equip entra;
     private Equip surt;
 
-    Uri selectedImage;
-    Uri mImageUri;
+    File bigImage;
+    File smallImage;
 
     private EditText dorsal1, dorsal2, dorsal3, dorsal4, dorsal5, dorsal6, dorsal7, dorsal8, dorsal9, dorsal10, dorsal11, dorsal12;
     private EditText name1, name2, name3, name4, name5, name6, name7, name8, name9, name10, name11, name12;
@@ -73,6 +81,24 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
         setTitle("Nou Equip");
 
         uf = new UserFunctions();
+
+        File bigDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/../LiveSoccer/");
+        String bigImageName = new SimpleDateFormat("ddMMyyy_HHmmss").format(new Date());
+        bigImage = new File(bigDir, bigImageName + ".jpg");
+
+        if (bigDir.mkdirs())
+            Log.d("bigDir", "creat a: " + bigDir.getPath());
+        else if (bigDir.exists())
+            Log.d("bigDir", "existeix a: " + bigDir.getPath());
+
+        File smallDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/../LiveSoccer/");
+        String smallImageName = new SimpleDateFormat("ddMMyyy_HHmmss").format(new Date());
+        smallImage = new File(smallDir, smallImageName + "_small.jpg");
+
+        if(smallDir.mkdirs()) Log.d("smallDir", "creat a: " + smallDir.getPath());
+
+        else if (smallDir.exists())
+            Log.d("smallDir", "existeix a: " + smallDir.getPath());
 
         entra = new Equip();
 
@@ -271,12 +297,16 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                Intent pickPhoto = new Intent();
-                                pickPhoto.setType("image/*");
-                                pickPhoto.setAction(Intent.ACTION_GET_CONTENT);
-                                startActivityForResult(pickPhoto, 0);
+                                Intent pickPictureIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                                pickPictureIntent.setType("image/*");
+                                startActivityForResult(Intent.createChooser(pickPictureIntent, "Selecciona la imatge"), 0);
                                 break;
                             case 1:
+                                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(bigImage));
+                                    startActivityForResult(takePictureIntent, 1);
+                                }
                                 Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                                 startActivityForResult(takePicture, 1);
                                 break;
@@ -316,52 +346,104 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
-                    selectedImage = imageReturnedIntent.getData();
-                    //guardar la foto a la ruta de local de SendMyFiles
-                    String selectedImagePath = getRealPathFromUri(this, selectedImage);
-                    //Poner en el ImageButton
-                    //Bitmap bmp = BitmapFactory.decodeFile(selectedImagePath);
-                    //pic.setImageBitmap(bmp);
-                    //Uri imgUri = Uri.parse(selectedImagePath);
-                    pic.setImageURI(selectedImage);
-                    //Guardar la foto al equip
-                    entra.setEscut(selectedImage);
-                    //Toast.makeText(NewEquipActivity.this,"La imatge pesa massa",Toast.LENGTH_SHORT).show();
+                    try {
+
+                        Uri photoUri = imageReturnedIntent.getData();
+                        if (photoUri != null) Log.d("PICK_IMAGE", "URI:" + photoUri.getPath());
+                        else Log.d("URI", "null");
+                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                        // Get the cursor
+                        Cursor cursor = getContentResolver().query(photoUri,
+                                filePathColumn, null, null, null);
+                        // Move to first row
+                        cursor.moveToFirst();
+
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        String imgDecodableString = cursor.getString(columnIndex);
+                        cursor.close();
+
+                        Bitmap imageBitmap = BitmapFactory.decodeFile(imgDecodableString);
+
+                        getBigImage(imageBitmap, bigImage);
+                        entra.setEscut(Uri.parse(bigImage.getAbsolutePath()));
+
+                        Bitmap thumbnail = getSmallImage(imageBitmap, smallImage);
+                        entra.setEscut(Uri.parse(smallImage.getAbsolutePath()));
+                        pic.setImageBitmap(thumbnail);
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             case 1:
                 if (resultCode == RESULT_OK) {
-                    Bitmap bmp =( Bitmap)imageReturnedIntent.getExtras().get("data");
-                    pic.setImageBitmap(bmp);
-                    mImageUri = imageReturnedIntent.getData();
-                    //guardar la foto a la ruta de local de SendMyFiles
-                    String selectedImagePath = getRealPathFromUri(this,mImageUri);
-                    //Poner en el ImageButton
-                    //Bitmap bmp = BitmapFactory.decodeFile(selectedImagePath);
-                    //pic.setImageBitmap(bmp);
-                    Uri imgUri = Uri.parse(selectedImagePath);
-                    //pic.setImageURI(imgUri);
-                    //Guardar la foto al equip
-                    entra.setEscut(imgUri);
-                    //Toast.makeText(NewEquipActivity.this,"La imatge pesa massa",Toast.LENGTH_SHORT).show();
+                    try {
+
+                        String fullSizeImagePath = bigImage.getAbsolutePath();
+                        entra.setEscut(Uri.parse(fullSizeImagePath));
+
+                        Bitmap imageBitmap = BitmapFactory.decodeFile(fullSizeImagePath);
+
+                        Bitmap thumbnail = getSmallImage(imageBitmap, smallImage);
+                        getBigImage(imageBitmap,bigImage);
+                        entra.setEscut(Uri.parse(smallImage.getAbsolutePath()));
+                        pic.setImageBitmap(thumbnail);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
         }
     }
 
-    public static String getRealPathFromUri(Context context, Uri contentUri) {
-        Cursor cursor = null;
+    public void getBigImage(Bitmap imageBitmap, File fullSizeFile) {
+
+        int width = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+
         try {
-            String[] proj = {MediaStore.Images.Media.DATA};
-            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+            if( imageBitmap.getWidth() > width && imageBitmap.getHeight() > height) imageBitmap  = Bitmap.createScaledBitmap(imageBitmap,width, height,true);
+            FileOutputStream image = new FileOutputStream(fullSizeFile);
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 85, image);
+            image.flush();
+            image.close();
+        } catch (IOException x) {
+            System.err.format("IOException %s%n", x);
         }
+
+    }
+
+    public Bitmap getSmallImage(Bitmap imageBitmap, File thumbnailFile) {
+
+        int width = Resources.getSystem().getDisplayMetrics().widthPixels;
+
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+
+        try {
+
+
+            FileOutputStream image = new FileOutputStream(thumbnailFile);
+            if (height / 5 < imageBitmap.getHeight() && width / 5 - 10 < imageBitmap.getWidth()) {
+                Bitmap scaled = Bitmap.createScaledBitmap(imageBitmap, imageBitmap.getWidth() / 10, imageBitmap.getHeight() / 10 - 10, true);
+                scaled.compress(Bitmap.CompressFormat.PNG, 75, image);
+
+                image.flush();
+                image.close();
+                return scaled;
+            } else {
+                imageBitmap.compress(Bitmap.CompressFormat.PNG, 75, image);
+                image.flush();
+                image.close();
+                return imageBitmap;
+            }
+        } catch (IOException x) {
+            System.err.format("IOException %s%n", x);
+        }
+        return null;
     }
 
     private Boolean checkValues() {

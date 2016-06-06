@@ -35,7 +35,7 @@ public class NewJugadorActivity extends AppCompatActivity {
 
     private ImageView escut;
     private ImageView pic;
-    private Spinner spinnerEquip;
+    private Spinner spinnerJugadors;
 
     private Button afegir;
 
@@ -52,19 +52,20 @@ public class NewJugadorActivity extends AppCompatActivity {
 
         ArrayList<Jugador> jugadors = uf.getJugadors(getApplicationContext());
 
-        spinnerEquip = (Spinner) findViewById(R.id.team);
+        spinnerJugadors = (Spinner) findViewById(R.id.player);
         final PlayerSpinnerAdapter playerSpinnerAdapter = new PlayerSpinnerAdapter(NewJugadorActivity.this, jugadors);
-        spinnerEquip.setAdapter(playerSpinnerAdapter);
+        spinnerJugadors.setAdapter(playerSpinnerAdapter);
 
         escut = (ImageView) findViewById(R.id.escut);
         pic = (ImageView) findViewById(R.id.pic);
 
-        spinnerEquip.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerJugadors.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 j = playerSpinnerAdapter.getItem(position);
                 escut.setImageURI(uf.getEquip(getApplicationContext(),j.getEquip()).getEscut());
                 pic.setImageURI(uf.getEquip(getApplicationContext(),j.getEquip()).getEscut());
+                titular.setChecked(j.getTitular());
             }
 
             @Override
@@ -78,7 +79,8 @@ public class NewJugadorActivity extends AppCompatActivity {
             j = uf.getJugador(getApplicationContext(),pos);
             escut.setImageURI(uf.getEquip(getApplicationContext(),j.getEquip()).getEscut());
             pic.setImageURI(uf.getEquip(getApplicationContext(),j.getEquip()).getEscut());
-            spinnerEquip.setSelection(pos);
+            spinnerJugadors.setSelection(pos);
+            titular.setChecked(j.getTitular());
         }
 
         nom = (EditText) findViewById(R.id.jugador);

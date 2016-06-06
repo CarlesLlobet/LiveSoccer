@@ -53,7 +53,7 @@ public class JugadorActivity extends AppCompatActivity {
         equip = (TextView)findViewById(R.id.equip);
         dorsal = (TextView)findViewById(R.id.dorsal);
 
-        delete = (Button) findViewById(R.id.btnDeleteJug);
+        delete = (Button) findViewById(R.id.btnDeleteJugador);
 
         escut = (ImageView)findViewById(R.id.pic);
 

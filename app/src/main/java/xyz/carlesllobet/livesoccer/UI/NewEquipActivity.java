@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -260,7 +261,7 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            /*case R.id.pic:
+            case R.id.pic:
                 CharSequence escutPic[] = new CharSequence[]{"Galería", "Cámara"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -270,25 +271,20 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                Intent pickPhoto = new Intent();
+                                pickPhoto.setType("image/*");
+                                pickPhoto.setAction(Intent.ACTION_GET_CONTENT);
                                 startActivityForResult(pickPhoto, 0);
                                 break;
                             case 1:
-                                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                //Anem a provar una solucio
-                                ContentValues values = new ContentValues();
-                                values.put(MediaStore.Images.Media.TITLE, "nou_equip");
-                                mImageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                                takePicture.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
-                                //fins aqui
+                                Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                                 startActivityForResult(takePicture, 1);
                                 break;
                         }
                     }
                 });
                 builder.show();
-                break;*/
+                break;
             case R.id.afegirEquip:
                 if (checkValues()) {
                     entra.setName(nom.getText().toString());
@@ -314,6 +310,7 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         switch (requestCode) {
@@ -325,23 +322,25 @@ public class NewEquipActivity extends AppCompatActivity implements View.OnClickL
                     //Poner en el ImageButton
                     //Bitmap bmp = BitmapFactory.decodeFile(selectedImagePath);
                     //pic.setImageBitmap(bmp);
-                    Uri imgUri = Uri.parse(selectedImagePath);
-                    pic.setImageURI(imgUri);
+                    //Uri imgUri = Uri.parse(selectedImagePath);
+                    pic.setImageURI(selectedImage);
                     //Guardar la foto al equip
-                    entra.setEscut(imgUri);
+                    entra.setEscut(selectedImage);
                     //Toast.makeText(NewEquipActivity.this,"La imatge pesa massa",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case 1:
                 if (resultCode == RESULT_OK) {
+                    Bitmap bmp =( Bitmap)imageReturnedIntent.getExtras().get("data");
+                    pic.setImageBitmap(bmp);
                     mImageUri = imageReturnedIntent.getData();
                     //guardar la foto a la ruta de local de SendMyFiles
-                    String selectedImagePath = getRealPathFromUri(this, mImageUri);
+                    String selectedImagePath = getRealPathFromUri(this,mImageUri);
                     //Poner en el ImageButton
                     //Bitmap bmp = BitmapFactory.decodeFile(selectedImagePath);
                     //pic.setImageBitmap(bmp);
                     Uri imgUri = Uri.parse(selectedImagePath);
-                    pic.setImageURI(imgUri);
+                    //pic.setImageURI(imgUri);
                     //Guardar la foto al equip
                     entra.setEscut(imgUri);
                     //Toast.makeText(NewEquipActivity.this,"La imatge pesa massa",Toast.LENGTH_SHORT).show();

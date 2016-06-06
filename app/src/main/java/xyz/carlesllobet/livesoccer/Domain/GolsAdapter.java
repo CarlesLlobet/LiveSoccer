@@ -21,9 +21,9 @@ public class GolsAdapter extends RecyclerView.Adapter<GolsAdapter.AdapterViewHol
     UserFunctions userFunctions = new UserFunctions();
     private Context context;
 
-    public GolsAdapter(Context con,String partit){
-        context = con;
-        gols = userFunctions.getGols(con,partit);
+    public GolsAdapter(Context c,String partit){
+        this.context = c;
+        gols = userFunctions.getGols(context,partit);
     }
 
 
@@ -42,6 +42,7 @@ public class GolsAdapter extends RecyclerView.Adapter<GolsAdapter.AdapterViewHol
         adapterViewholder.name.setText(gols.get(position).getName());
         adapterViewholder.escut.setImageURI(equipDelJugador.getEscut());
         adapterViewholder.dorsal.setText(gols.get(position).getDorsal().toString());
+        android:adapterViewholder.gols.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_delete,0);
     }
 
     @Override
@@ -69,6 +70,7 @@ public class GolsAdapter extends RecyclerView.Adapter<GolsAdapter.AdapterViewHol
         public ImageView escut;
         public TextView name;
         public TextView dorsal;
+        public TextView gols;
         public View v;
         public AdapterViewHolder(View itemView) {
             super(itemView);
@@ -76,6 +78,7 @@ public class GolsAdapter extends RecyclerView.Adapter<GolsAdapter.AdapterViewHol
             this.escut = (ImageView) itemView.findViewById(R.id.foto);
             this.name = (TextView) itemView.findViewById(R.id.name);
             this.dorsal = (TextView) itemView.findViewById(R.id.dorsal);
+            this.gols = (TextView) itemView.findViewById(R.id.gols);
         }
     }
 }

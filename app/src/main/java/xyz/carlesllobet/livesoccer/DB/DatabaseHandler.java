@@ -48,6 +48,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Matches Table name
     private static final String TABLE_JUGADORS = "jugadors";
+    private static final String TABLE_GOLEJADORS = "golejadors";
 
     // Matches Table Columns names
     private static final String KEY_NAME = "name";
@@ -55,6 +56,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_EQUIP = "equip";
     private static final String KEY_TITULAR = "titular";
     private static final String KEY_GOL = "gols_lliga";
+
+    // Matches Table name
+
 
     private SQLiteDatabase db;
 
@@ -86,9 +90,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_PUNT_LOCAL + " INTEGER,"
                 + KEY_PUNT_VISITANT + " INTEGER,"
                 + KEY_GOLEJADORS + " STRING NOT NULL" + ")";
+        String CREATE_GOLEJADORS_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_GOLEJADORS + "("
+                + KEY_NAME + " TEXT NOT NULL,"
+                + KEY_DORSAL + " INTEGER NOT NULL,"
+                + KEY_EQUIP + " STRING NOT NULL" + ")";
         db.execSQL(CREATE_EQUIPS_TABLE);
         db.execSQL(CREATE_JUGADORS_TABLE);
         db.execSQL(CREATE_PARTITS_TABLE);
+        db.execSQL(CREATE_GOLEJADORS_TABLE);
     }
 
     // Upgrading database
@@ -98,6 +107,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EQUIPS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_JUGADORS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARTITS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_GOLEJADORS);
 
         // Create tables again
         onCreate(db);
@@ -149,6 +159,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_JUGADORS, null, values);
+        return true;
+    }
+
+    public boolean addJugadorEliminat(String nombre, Integer dorsal, String nomEquip) {
+        db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, nombre); // Name
+        values.put(KEY_DORSAL, dorsal); // Dorsal
+        values.put(KEY_EQUIP, nomEquip); // Equip
+
+        // Inserting Row
+        db.insert(TABLE_GOLEJADORS, null, values);
         return true;
     }
 
@@ -325,6 +348,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Boolean deleteJugador(String name) {
+        Jugador j = getJugador(name);
+        addJugadorEliminat(j.getName(),j.getDorsal(),j.getEquip());
         db = this.getWritableDatabase();
         String deleteQuery = "DELETE FROM " + TABLE_JUGADORS + " WHERE " + KEY_NAME + " = '" + name + "'";
         db.execSQL(deleteQuery);
@@ -378,6 +403,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             else b = false;
             res.setTitular(b);
             res.setGols(cursor.getInt(4));
+            cursor.close();
+            return res;
+        } else {
+            cursor.close();
+            return null;
+        }
+    }
+
+    public Jugador getJugadorEliminat(String name) {
+        db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + TABLE_GOLEJADORS + " WHERE " + KEY_NAME + " = '" + name + "'";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.getPosition();
+        if (cursor.moveToFirst()) {
+            Jugador res = new Jugador();
+            res.setName(cursor.getString(0));
+            res.setDorsal(cursor.getInt(1));
+            res.setEquip(cursor.getString(2));
             cursor.close();
             return res;
         } else {
@@ -512,7 +556,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ArrayList<Jugador> golejadors = new ArrayList<Jugador>();
                 String[] csv = (cursor.getString(4)).split(",");
                 for (int j = 0; j < csv.length; j++) {
-                    golejadors.add(getJugador(csv[j]));
+                    if (getJugador(csv[j])==null){
+                        golejadors.add(getJugadorEliminat(csv[j]));
+                    }
+                    else golejadors.add(getJugador(csv[j]));
                 }
                 Partit res = new Partit(getEquip(cursor.getString(0)), getEquip(cursor.getString(1)), cursor.getInt(2), cursor.getInt(3), golejadors);
                 jornada.setPartit(i, res);

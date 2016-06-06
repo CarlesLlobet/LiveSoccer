@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import xyz.carlesllobet.livesoccer.R;
 import xyz.carlesllobet.livesoccer.UI.HomeActivity;
 import xyz.carlesllobet.livesoccer.UI.HomeFragment;
 
@@ -13,8 +14,8 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
 
     final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Partits", "Equips", "Jugadors" };
     private Context context;
+    private String tabTitles[];
     Fragment tab = null;
     private Integer tabActual = 1;
 
@@ -22,6 +23,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public PagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
+        this.tabTitles = new String[] {context.getString(R.string.tabPartits), context.getString(R.string.tabEquips),context.getString(R.string.tabJugadors)};
     }
 
 

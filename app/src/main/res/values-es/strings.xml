@@ -1,9 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LiveSoccer</string>
     <string name="equip">Equipo:</string>
+    
+    <string name="help">
+        <b>LiveSoccer</b> es una aplicación para el control y seguimento de una liga de fútbol.\n\n
+
+        <u><b>Esta aplicación te permitirá:</b></u>\n\n
+
+        <u>-Ver las jornadas jugadas:</u>\n
+        En la pestaña inicial de Partidos podemos ver los resultados de los 5 partidos de cada jornada.\n\n
+        <u>-Ver la clasificación de equips:</u>\n
+        En la pestaña de Equipos podem ver la clasificación de liga de cada equipo, según su puntuación.\n\n
+        <u>-Ver la clasificación de jugadores:</u>\n
+        En la pestaña de Jugadores podemos ver la clasificación de liga de cada jugador, según los goles marcados.\n\n
+        <u>-Registrar una jornada:</u>\n
+        En la pestaña de Partidos pulsa el botón "+" para añadir la información de los 5 partidos de una nueva jornada,
+        y los goleadores de cada partido.\n\n
+        <u>-Dar de alta/baja un equipo en la liga:</u>\n
+        En la pestaña de Equipos pulsa el botón "+" o desde dentro de un equipo pulsa el botón "Dar de baja" para dar de baja
+        un equipo y añadir los datos y escudo de uno nuevo.\n\n
+        <u>-Dar de baja/fichar un jugador a un equipo:</u>\n
+        En la pestaña de Jugadores pulsa el botón "+" o desde dentro de un jugador pulsa el botón "Dar de baja" para dar de baja
+        un jugador y fichar uno nuevo en su lugar.\n\n
+
+        El hecho de dar de baja un equipo o un jugador no borrará los datos de los partidos que ya se havian producido,
+        para que puedas mantener el control de nuevas ligas sin perder los resultados de otras anteriores.
+    </string>
+    
     <string name="dialog1">Escudo para el nuevo equipo</string>
     <string name="tituloLanguage">Idioma</string>
     <string name="tituloHome">Inicio</string>
     <string name="tituloDetalles">Detalles equipo</string>
+    <string name="btnDelete">Dar de baja</string>
+    <string name="cat">Catalán</string>
+    <string name="en">Inglés</string>
+    <string name="gols">Goles en liga:</string>
+    <string name="name">Nombre:</string>
+    <string name="pe">Partidos empatados:</string>
+    <string name="pg">Partidos ganados:</string>
+    <string name="pp">Partidos perdidos:</string>
+    <string name="plantilla">Plantilla:</string>
+    <string name="progress">Procesando...</string>
+    <string name="punt">Puntuación:</string>
+    <string name="spa">Español</string>
+    <string name="tituloAyuda">Ayuda</string>
+    <string name="generant">Generando valores iniciales...</string>
+    <string name="tabPartits">PARTIDOS</string>
+    <string name="tabEquips">EQUIPOS</string>
+    <string name="tabJugadors">JUGADORES</string>
+    <string name="partit1">Partido 1</string>
+    <string name="partit2">Partido 2</string>
+    <string name="jornada">Jornada</string>
+    <string name="partit3">Partido 3</string>
+    <string name="partit4">Partido 4</string>
+    <string name="partit5">Partido 5</string>
+    <string name="golsTab">Goles</string>
+    <string name="equipBaixa">Equipo de baja</string>
+    <string name="ciutat">Ciudad:</string>
+    <string name="jugador">Jugador</string>
+    <string name="equipNou">Nuevo equipo</string>
+    <string name="afegir">Guardar cambios</string>
+    <string name="equipNom">Nombre equipo</string>
+    <string name="jugadorNom">Nombre jugador</string>
+    <string name="jugadorNou">Nuevo jugador</string>
+    <string name="jugadorBaixa">Jugador de baja</string>
 </resources>

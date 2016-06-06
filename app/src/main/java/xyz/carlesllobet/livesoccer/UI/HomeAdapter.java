@@ -72,7 +72,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.AdapterViewHol
     public void onBindViewHolder(HomeAdapter.AdapterViewHolder adapterViewholder, int position) {
         switch (actualTab) {
             case 1:
-                adapterViewholder.jornada.setText("Jornada " + String.valueOf(position+1));
+                adapterViewholder.jornada.setText(context.getString(R.string.jornada)+ " " + String.valueOf(position+1));
                 
                 //Partit 1
                 adapterViewholder.name.setText(jornades.get(position).getPrimer().getLocal().getName());
@@ -131,7 +131,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.AdapterViewHol
                 adapterViewholder.gols.setText(jugadors.get(position).getGols().toString());
                 break;
             default:
-                adapterViewholder.jornada.setText(String.valueOf(position));
+                adapterViewholder.jornada.setText(context.getString(R.string.jornada)+ " " + String.valueOf(position+1));
 
                 //Partit 1
                 adapterViewholder.name.setText(jornades.get(position).getPrimer().getLocal().getName());

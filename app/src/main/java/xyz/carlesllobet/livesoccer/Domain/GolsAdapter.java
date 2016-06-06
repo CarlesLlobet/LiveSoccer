@@ -23,6 +23,11 @@ public class GolsAdapter extends RecyclerView.Adapter<GolsAdapter.AdapterViewHol
 
     public GolsAdapter(Context c,String partit){
         this.context = c;
+        if (partit.equals("Partido 1") || partit.equals("Match 1")) partit = "Partit 1";
+        if (partit.equals("Partido 2") || partit.equals("Match 2")) partit = "Partit 2";
+        if (partit.equals("Partido 3") || partit.equals("Match 3")) partit = "Partit 3";
+        if (partit.equals("Partido 4") || partit.equals("Match 4")) partit = "Partit 4";
+        if (partit.equals("Partido 5") || partit.equals("Match 5")) partit = "Partit 5";
         gols = userFunctions.getGols(context,partit);
     }
 

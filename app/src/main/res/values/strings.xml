@@ -8,39 +8,19 @@
     <string name="tituloHome">Inici</string>
     <string name="tituloLanguage">Idioma</string>
 
-    <string name="progress">Procesando...</string>
-    <string name="welcome">Bienvenido a</string>
+    <string name="progress">Procesant...</string>
 
     <!-- Error Messages -->
 
-    <string name="error1">"La contraseña actual no es correcta!"</string>
-    <string name="error2">"Las contraseñas no coinciden!"</string>
-    <string name="error3">"Datos incorrectos. Prueba con otro username o contraseña"</string>
-
     <!-- Login Fields -->
-    <string name="user">"Usuario:"</string>
-    <string name="passwd">"Contraseña:"</string>
-    <string name="error">"Error"</string>
-    <string name="loginFail">"El usuario o contraseña introducidos no son correctos"</string>
 
 
     <!-- ChangeUser Fields -->
-    <string name="oldPasswd">"Contraseña actual:"</string>
-    <string name="newPasswd">"Nueva contraseña:"</string>
-    <string name="newPasswd2">"Repita la nueva contraseña:"</string>
 
     <!-- ProductsFragment Fields -->
-    <string name="deleteUser">"Eliminar"</string>
-    <string name="deleteUserText">"Seguro que quieres eliminar el usuario: "</string>
 
     <!-- Buttons -->
-    <string name="btnEnter">Entrar</string>
-    <string name="btnChange">Cambiar</string>
-    <string name="btnAddUser">Añadir usuario</string>
-    <string name="btnChangePasswd">Cambiar contraseña</string>
-    <string name="btnRegister">   Registrar-se</string>
     <string name="btnDelete">   Donar de Baixa</string>
-    <string name="btnRetry">   Reintentar</string>
 
     <string name="help">
         <b>LiveSoccer</b> és una aplicació per al control i seguiment d\'una lliga de futbol.\n\n
@@ -66,11 +46,9 @@
         El fet de donar de baixa un equip o un jugador no borrarà les dades dels partits que ja s\'havien produit,
         per tal que puguis mantenir el control de noves lligues sense perdre els resultats d\'altres anteriors.
     </string>
-    <string name="btnClose">Cerrar</string>
-    <string name="spa">Español</string>
-    <string name="cat">Catalan</string>
-    <string name="en">Inglés</string>
-    <string name="language">El idioma cambiará al cambiar de pantalla</string>
+    <string name="spa">Espanyol</string>
+    <string name="cat">Català</string>
+    <string name="en">Anglès</string>
 
     <!-- detalls equip -->
     <string name="punt">Puntuació:</string>
@@ -81,4 +59,25 @@
     <string name="plantilla">Plantilla:</string>
     <string name="equip">Equip:</string>
     <string name="dialog1">Escut pel nou equip</string>
+    <string name="name">Nom:</string>
+    <string name="generant">Generant dades inicials...</string>
+    <string name="tabPartits">PARTITS</string>
+    <string name="tabEquips">EQUIPS</string>
+    <string name="tabJugadors">JUGADORS</string>
+    <string name="partit1">Partit 1</string>
+    <string name="partit2">Partit 2</string>
+    <string name="jornada">Jornada</string>
+    <string name="partit3">Partit 3</string>
+    <string name="partit4">Partit 4</string>
+    <string name="partit5">Partit 5</string>
+    <string name="golsTab">Gols</string>
+    <string name="equipBaixa">Equip de baixa</string>
+    <string name="equipNou">Nou equip</string>
+    <string name="ciutat">Ciutat:</string>
+    <string name="jugador">Jugador</string>
+    <string name="afegir">Guardar canvis</string>
+    <string name="jugadorNom">Nom jugador</string>
+    <string name="equipNom">Nom equip</string>
+    <string name="jugadorNou">Nou jugador</string>
+    <string name="jugadorBaixa">Jugador de baixa</string>
 </resources>

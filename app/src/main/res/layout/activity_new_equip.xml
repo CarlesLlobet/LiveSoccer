@@ -19,7 +19,7 @@
             android:layout_height="30dp"
             android:background="@color/colorPrimary"
             android:gravity="center"
-            android:text="Equip de baixa"
+            android:text="@string/equipBaixa"
             android:textColor="@android:color/white"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -66,7 +66,7 @@
             android:gravity="center"
             android:paddingLeft="100dp"
             android:paddingRight="100dp"
-            android:text="Nou equip"
+            android:text="@string/equipNou"
             android:textColor="@android:color/white"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:hint="Nom equip"
+                android:hint="@string/equipNom"
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white"
@@ -115,7 +115,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:text="Ciutat:"
+                android:text="@string/ciutat"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@android:color/white" />
 
@@ -187,7 +187,7 @@
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -249,7 +249,7 @@
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -312,7 +312,7 @@
                 android:inputType="textPersonName"
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:gravity="center"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -373,7 +373,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:inputType="textPersonName"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:textColor="@color/text"
                 android:textSize="18dp"
@@ -436,7 +436,7 @@
                 android:inputType="textPersonName"
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:gravity="center"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -498,7 +498,7 @@
                 android:gravity="center"
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:inputType="textPersonName"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -559,7 +559,7 @@
                 android:gravity="center"
                 android:inputType="textPersonName"
                 android:textColorHint="@android:color/tertiary_text_light"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -620,7 +620,7 @@
                 android:gravity="center"
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:inputType="textPersonName"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -681,7 +681,7 @@
                 android:gravity="center"
                 android:inputType="textPersonName"
                 android:textColorHint="@android:color/tertiary_text_light"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -741,7 +741,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:inputType="textPersonName"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:textColor="@color/text"
                 android:textSize="18dp"
@@ -802,7 +802,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:inputType="textPersonName"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textColorHint="@android:color/tertiary_text_light"
                 android:textSize="18dp"
@@ -864,7 +864,7 @@
                 android:gravity="center"
                 android:inputType="textPersonName"
                 android:textColorHint="@android:color/tertiary_text_light"
-                android:hint="Jugador"
+                android:hint="@string/jugador"
                 android:textColor="@color/text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -893,7 +893,7 @@
             android:layout_marginTop="10dp"
             android:textSize="15dp"
             android:background="@color/colorAccent"
-            android:text="Afegir"
+            android:text="@string/afegir"
             android:textColor="@android:color/white" />
     </LinearLayout>
 </ScrollView>

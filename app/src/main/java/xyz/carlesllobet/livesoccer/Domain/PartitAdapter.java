@@ -38,11 +38,13 @@ public class PartitAdapter extends RecyclerView.Adapter<PartitAdapter.AdapterVie
 
     @Override
     public void onBindViewHolder(PartitAdapter.AdapterViewHolder adapterViewholder, int position) {
-
-        Equip equipDelJugador = userFunctions.getEquip(context,gols.get(position).getEquip());
-        adapterViewholder.name.setText(gols.get(position).getName());
-        adapterViewholder.escut.setImageURI(equipDelJugador.getEscut());
-        adapterViewholder.dorsal.setText(gols.get(position).getDorsal().toString());
+        Jugador aux = gols.get(position);
+        if (aux!=null){
+            Equip equipDelJugador = userFunctions.getEquip(context,aux.getEquip());
+            adapterViewholder.name.setText(aux.getName());
+            adapterViewholder.escut.setImageURI(equipDelJugador.getEscut());
+            adapterViewholder.dorsal.setText(aux.getDorsal().toString());
+        }
     }
 
     @Override

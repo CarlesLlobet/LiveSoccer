@@ -201,8 +201,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //Si existeix, retorna fals, i no es pot afegir
         if ((!checkExist(nomLocal)) || !checkExist(nomVisitant)) return false;
         String csv = "";
-        if (golejadors.size() > 0) csv = golejadors.get(0).getName();
-        for (int i = 0; i < golejadors.size(); i++) {
+        if (golejadors.size() > 0) {
+            csv = golejadors.get(0).getName();
+            addGolJugador(golejadors.get(0).getName());
+            addGolEquip(golejadors.get(0).getEquip());
+            if (golejadors.get(0).getEquip().equals(nomLocal)) ++golsLocal;
+            else if (golejadors.get(0).getEquip().equals(nomVisitant)) ++golsVisitant;
+        }
+        for (int i = 1; i < golejadors.size(); i++) {
             csv += ",";
             csv += golejadors.get(i).getName();
             addGolJugador(golejadors.get(i).getName());
@@ -578,10 +584,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Jornada getJornada(Integer posicio) {
         Jornada jornada = new Jornada();
         String selectQuery = "SELECT  * FROM " + TABLE_PARTITS;
+        Integer posicioBona=posicio*5;
 
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-        if (cursor.moveToPosition(posicio)) {
+        if (cursor.moveToPosition(posicioBona)) {
             for (int i = 1; i < 6; i++) {
                 ArrayList<Jugador> golejadors = new ArrayList<Jugador>();
                 String[] csv = (cursor.getString(4)).split(",");

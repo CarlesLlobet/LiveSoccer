@@ -17,7 +17,7 @@
             android:layout_height="30dp"
             android:background="@color/colorPrimary"
             android:gravity="center"
-            android:text="Partit 1"
+            android:text="@string/partit1"
             android:textColor="@android:color/white"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -120,7 +120,7 @@
             android:gravity="center"
             android:paddingLeft="100dp"
             android:paddingRight="100dp"
-            android:text="Gols"
+            android:text="@string/golsTab"
             android:textColor="@android:color/white"
             android:textSize="18dp"
             android:textStyle="bold" />

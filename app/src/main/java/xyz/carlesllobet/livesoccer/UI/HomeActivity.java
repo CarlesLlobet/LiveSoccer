@@ -35,13 +35,6 @@ public class HomeActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         userFunctions = new UserFunctions();
         lang = userFunctions.getLang(getApplicationContext());
-        if (!lang.equals("notExists")) {
-            Locale locale = new Locale(lang);
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getApplicationContext().getResources().updateConfiguration(config, null);
-        }
         setContentView(R.layout.activity_home);
         toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
         setActionBar(toolbar);

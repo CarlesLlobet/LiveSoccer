@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="account">Account</string>
-    <string name="action_settings">Settings</string>
     <string name="btnAddUser">Add user</string>
     <string name="btnChange">Change</string>
     <string name="btnChangePasswd">Change password</string>
@@ -91,4 +89,6 @@
     <string name="tituloProducts">Products</string>
     <string name="punt">Score:</string>
     <string name="equip">Team:</string>
+    <string name="tituloLanguage">Language</string>
+    <string name="tituloDetalles">Team details</string>
 </resources>

@@ -7,7 +7,7 @@
         android:id="@+id/action_language"
         android:icon="@mipmap/ic_spain"
         android:orderInCategory="100"
-        android:title="Language"
+        android:title="@string/tituloLanguage"
         app:showAsAction="ifRoom">
         <menu>
             <item
@@ -30,6 +30,6 @@
         android:id="@+id/action_help"
         android:icon="@drawable/ic_help_white_24dp"
         android:orderInCategory="100"
-        android:title="Ayuda"
+        android:title="@string/tituloAyuda"
         app:showAsAction="ifRoom" />
 </menu>

@@ -3,4 +3,7 @@
     <string name="app_name">LiveSoccer</string>
     <string name="equip">Equipo:</string>
     <string name="dialog1">Escudo para el nuevo equipo</string>
+    <string name="tituloLanguage">Idioma</string>
+    <string name="tituloHome">Inicio</string>
+    <string name="tituloDetalles">Detalles equipo</string>
 </resources>

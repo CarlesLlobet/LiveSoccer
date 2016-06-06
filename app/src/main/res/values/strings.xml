@@ -6,9 +6,8 @@
     <string name="tituloAyuda">Ajuda</string>
     <string name="tituloDetalles">Detalls equip</string>
     <string name="tituloHome">Inici</string>
-    <string name="tituloSettings">Preferències</string>
+    <string name="tituloLanguage">Idioma</string>
 
-    <string name="account">Cuenta</string>
     <string name="progress">Procesando...</string>
     <string name="welcome">Bienvenido a</string>
 
@@ -40,27 +39,32 @@
     <string name="btnAddUser">Añadir usuario</string>
     <string name="btnChangePasswd">Cambiar contraseña</string>
     <string name="btnRegister">   Registrar-se</string>
-    <string name="btnDelete">   Baixa</string>
+    <string name="btnDelete">   Donar de Baixa</string>
     <string name="btnRetry">   Reintentar</string>
 
-    <!-- Otros -->
-    <string name="action_settings">Ajustes</string>
-    <string name="openDrawer">Open Drawer</string>
-    <string name="closeDrawer">Cerrar menu</string>
-    <string name="helpHome">
-        Este reproductor de musica te permitirá:\n\n
+    <string name="help">
+        <b>LiveSoccer</b> és una aplicació per al control i seguiment d\'una lliga de futbol.\n\n
 
-        <u>-Forward:</u> Lleva el audio al principio otra vez\n
-        <u>-Play/Pausa:</u> Permite pausar la reproducción y retomarla en el punto donde la habias pausado\n
-        <u>-Stop:</u> Detiene el audio y lo lleva al principio\n
-        <u>-Loop:</u> Pone la reproducción en modo "Repetir", por lo que cuando el audio finaliza, vuelve a reproducirse\n
-    </string>
-    <string name="helpMenu">Para añadir un elemento a tu lista de la compra, pasa un tag NFC o pulsa el boton</string>
-    <string name="helpSettings">
-        En ajustes puedes ver toda tu información personal para verificarla.\n
-        En caso de error o cambio en algun dato, habla con el administrador para modificarlo.\n\n
+        <u><b>Aquesta aplicació et permetra:</b></u>\n\n
 
-        El boton de <b>Cerrar sesión</b> te permitira cerrar la sesión para que nadie pueda acceder a tu cuenta ni información personal.
+        <u>-Veure les jornades jugades:</u>\n
+        A la pestanya inicial de Partits podem veure els resultats dels 5 partits de cada jornada.\n\n
+        <u>-Veure la classificació d\'equips:</u>\n
+        A la pestanya de Equips podem veure la classificació de lliga de cada equip, segons la seva puntuació.\n\n
+        <u>-Veure la classificació de jugadors:</u>\n
+        A la pestanya de Jugadors podem veure la classificació de lliga de cada jugador, segons els gols marcats.\n\n
+        <u>-Registrar una jornada:</u>\n
+        A la pestanya de Partits prem el botó "+" per a afegir la informació dels 5 partits d\'una nova jornada,
+        i els golejadors de cada partit.\n\n
+        <u>-Donar d\'alta/baixa un equip a lliga:</u>\n
+        A la pestanya de Equips prem el botó "+" o des de dins d\'un equip prem el botó "Donar de baixa" per a donar de baixa
+        un equip i afegir les dades i escut d\'un de nou.\n\n
+        <u>-Donar de baixa/fitxar un jugador a un equip:</u>\n
+        A la pestanya de Jugadors prem el botó "+" o des de dins d\'un jugador prem el botó "Donar de baixa" per a donar de baixa
+        un jugador i fitxar-ne un de nou al seu lloc.\n\n
+
+        El fet de donar de baixa un equip o un jugador no borrarà les dades dels partits que ja s\'havien produit,
+        per tal que puguis mantenir el control de noves lligues sense perdre els resultats d\'altres anteriors.
     </string>
     <string name="btnClose">Cerrar</string>
     <string name="spa">Español</string>

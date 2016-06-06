@@ -193,6 +193,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.AdapterViewHol
         public class AdapterViewHolder extends RecyclerView.ViewHolder {
 
             public View v;
+
             //Partits
             public TextView jornada;
             public ImageView foto,foto2,foto3,foto4,foto5,foto6,foto7,foto8,foto9,foto10;

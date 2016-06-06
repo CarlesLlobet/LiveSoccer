@@ -1,5 +1,6 @@
 package xyz.carlesllobet.livesoccer.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -73,14 +75,16 @@ public class NewJugadorActivity extends AppCompatActivity {
 
             }
         });
-
-        Integer pos = getIntent().getExtras().getInt("jugador");
-        if (pos != null) {
-            j = uf.getJugador(getApplicationContext(),pos);
-            escut.setImageURI(uf.getEquip(getApplicationContext(),j.getEquip()).getEscut());
-            pic.setImageURI(uf.getEquip(getApplicationContext(),j.getEquip()).getEscut());
-            spinnerJugadors.setSelection(pos);
-            titular.setChecked(j.getTitular());
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Integer pos = getIntent().getExtras().getInt("jugador");
+            if (pos != null) {
+                j = uf.getJugador(getApplicationContext(), pos);
+                escut.setImageURI(uf.getEquip(getApplicationContext(), j.getEquip()).getEscut());
+                pic.setImageURI(uf.getEquip(getApplicationContext(), j.getEquip()).getEscut());
+                spinnerJugadors.setSelection(pos);
+                titular.setChecked(j.getTitular());
+            }
         }
 
         nom = (EditText) findViewById(R.id.jugador);
@@ -94,13 +98,26 @@ public class NewJugadorActivity extends AppCompatActivity {
                 if (checkedValues()) {
                     uf.deleteJugador(getApplicationContext(), j.getName());
                     uf.addJugador(getApplicationContext(), nom.getText().toString(), Integer.valueOf(dorsal.getText().toString()), j.getEquip(), titular.isChecked());
+                    startActivity(new Intent(NewJugadorActivity.this,HomeActivity.class));
                 }
             }
         });
     }
 
     private Boolean checkedValues(){
-        return false;
+        if (dorsal.getText().toString().equals("") || nom.getText().toString().equals("")) {
+            Toast.makeText(this,"Completa la informació del nou jugador",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (uf.checkDorsal(getApplicationContext(),j.getEquip(),Integer.valueOf(dorsal.getText().toString()))){
+            Toast.makeText(this,"Aquest dorsal ja s'utilitza al " + j.getEquip(),Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (uf.checkExistJug(getApplicationContext(),nom.getText().toString())){
+            Toast.makeText(this,"El jugador " + nom.getText().toString() + " ja existeix",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     @Override

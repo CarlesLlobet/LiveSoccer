@@ -72,6 +72,20 @@ public class UserFunctions {
         return jugador;
     }
 
+    public Boolean checkDorsal(Context context, String equip, Integer pos){
+        DatabaseHandler db = new DatabaseHandler(context);
+        Boolean res = db.checkDorsal(equip,pos);
+        db.closeDB();
+        return res;
+    }
+
+    public Boolean checkExistJug(Context context, String name){
+        DatabaseHandler db = new DatabaseHandler(context);
+        Boolean res = db.checkExistJug(name);
+        db.closeDB();
+        return res;
+    }
+
     public Equip getEquip(Context context, Integer pos){
         DatabaseHandler db = new DatabaseHandler(context);
         Equip equip = db.getEquip(pos);

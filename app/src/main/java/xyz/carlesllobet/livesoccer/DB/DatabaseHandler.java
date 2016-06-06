@@ -135,7 +135,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //Si existeix, retorna fals, i no es pot afegir
         if (checkExist(nombre)) return false;
-        if (CheckDorsal(nomEquip, dorsal)) return false;
+        if (checkDorsal(nomEquip, dorsal)) return false;
 
         if ((nombre.equals("")) || (nomEquip.equals("")) || (dorsal < 0 || dorsal > 99))
             return false;
@@ -277,7 +277,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return b;
     }
 
-    public Boolean CheckDorsal(String equip, Integer dorsal) {
+    public Boolean checkDorsal(String equip, Integer dorsal) {
         db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_JUGADORS + " WHERE " + KEY_EQUIP + " = '" + equip + "' AND " + KEY_DORSAL + " = '" + dorsal + "'";
 
